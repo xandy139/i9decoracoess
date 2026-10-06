@@ -3,7 +3,7 @@
    Design System & Luxury Aesthetics Stylesheet
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
 
 /* --- CSS Variables / Design Tokens --- */
 :root {
@@ -689,97 +689,122 @@ section {
   max-width: 100%;
 }
 
-/* Giant Marquee Letter Style (Matching Real 3D White Channel Letters) */
-.marquee-char {
-  width: clamp(42px, 11vw, 62px);
-  height: clamp(54px, 14vw, 78px);
-  background: #FFFFFF;
-  border: 3px solid #E5E7EB;
-  border-radius: 10px;
+/* ==========================================================================
+   Giant 3D Marquee Channel Letters (1,20m Freestanding Cut-Out Letters)
+   Matches Real Physical Event Channel Letters in Pure Cold White LED
+   ========================================================================== */
+.virtual-stage {
+  min-height: 195px;
+  background: radial-gradient(ellipse at 50% 95%, rgba(30, 41, 59, 0.95) 0%, #0B0E17 65%), #060911;
+  border: 1px solid rgba(226, 232, 240, 0.14);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-accent);
-  font-size: clamp(1.5rem, 5vw, 2.3rem);
-  font-weight: 700;
-  color: #1F2937;
+  padding: 35px 16px 45px;
   position: relative;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: inset 0 10px 40px rgba(0, 0, 0, 0.95), 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Floor perspective reflection line */
+.virtual-stage::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.stage-letters-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(6px, 1.8vw, 14px);
+  flex-wrap: wrap;
+  z-index: 2;
+  position: relative;
+}
+
+/* Freestanding 3D Cut-out Marquee Character Container (NO SQUARE BOX) */
+.marquee-char {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  width: auto;
+  min-width: clamp(26px, 6vw, 46px);
+  height: clamp(65px, 15vw, 95px);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
   user-select: none;
   flex-shrink: 0;
-  box-shadow: 
-    inset 0 4px 10px rgba(0, 0, 0, 0.25),
-    0 10px 25px rgba(0, 0, 0, 0.7);
+  box-shadow: none !important;
+  padding: 0 2px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Exclusively Cold White LED Lighting (Luz Fria) */
-.marquee-char.glow-cold-white,
-.marquee-char.glow-white,
-.marquee-char.glow-amber,
-.marquee-char.glow-pink {
-  color: #111827;
-  border-color: #FFFFFF;
-  background: #FFFFFF;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 1), 0 0 28px rgba(220, 240, 255, 0.95);
-  box-shadow: 
-    inset 0 2px 14px rgba(255, 255, 255, 0.8),
-    0 0 32px rgba(255, 255, 255, 0.9),
-    0 0 65px rgba(186, 230, 253, 0.5),
-    0 12px 25px rgba(0, 0, 0, 0.75);
+.marquee-char:hover {
+  transform: translateY(-5px) scale(1.05);
 }
 
-.marquee-char.glow-pulse {
-  color: #111827;
-  border-color: #FFFFFF;
-  background: #FFFFFF;
-  animation: coldGlowPulse 2.2s ease-in-out infinite alternate;
+.marquee-spacer {
+  width: clamp(14px, 4vw, 26px);
+  flex-shrink: 0;
+  height: 10px;
 }
 
-@keyframes coldGlowPulse {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(186, 230, 253, 0.6);
-    box-shadow: 
-      inset 0 2px 10px rgba(255, 255, 255, 0.6),
-      0 0 24px rgba(255, 255, 255, 0.75),
-      0 0 45px rgba(186, 230, 253, 0.35),
-      0 12px 25px rgba(0, 0, 0, 0.7);
-  }
-  100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 35px rgba(224, 242, 254, 1);
-    box-shadow: 
-      inset 0 2px 16px rgba(255, 255, 255, 0.9),
-      0 0 45px rgba(255, 255, 255, 1),
-      0 0 85px rgba(186, 230, 253, 0.75),
-      0 14px 28px rgba(0, 0, 0, 0.8);
-  }
+/* The actual 3D Freestanding Letter Glyph (Letra Caixa 1,20m) */
+.marquee-glyph {
+  display: block;
+  font-family: 'Montserrat', 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(2.8rem, 8.5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 0.92;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+  /* Crisp 3D Bezel Rim (Borda de Acrílico/Alumínio 1,20m) */
+  -webkit-text-stroke: 1.3px #E2E8F0;
+  /* Multi-level 3D Extrusion Depth + Radiant Cold White LED Glow */
+  text-shadow:
+    /* 3D Physical Channel Depth Extrusion */
+    0 1px 0 #E2E8F0,
+    0 2px 0 #CBD5E1,
+    0 3px 0 #94A3B8,
+    0 4px 0 #64748B,
+    0 5px 1px rgba(0, 0, 0, 0.45),
+    0 6px 3px rgba(0, 0, 0, 0.65),
+    /* Radiant Cold White LED Halo */
+    0 0 10px #FFFFFF,
+    0 0 22px rgba(255, 255, 255, 1),
+    0 0 45px rgba(224, 242, 254, 0.95),
+    0 0 75px rgba(186, 230, 253, 0.8),
+    0 0 110px rgba(125, 211, 252, 0.45);
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.85));
 }
 
-.marquee-char.glow-intense {
-  color: #030712;
-  border-color: #FFFFFF;
-  background: #FFFFFF;
-  text-shadow: 0 0 22px rgba(255, 255, 255, 1), 0 0 45px rgba(224, 242, 254, 1);
-  box-shadow: 
-    inset 0 2px 16px rgba(255, 255, 255, 1),
-    0 0 50px rgba(255, 255, 255, 1),
-    0 0 95px rgba(186, 230, 253, 0.75),
-    0 14px 30px rgba(0, 0, 0, 0.8);
-}
-
-.marquee-char .bulb-dot {
+/* Floor light reflection beneath each freestanding 1.20m letter */
+.marquee-floor-reflection {
   position: absolute;
-  width: 7px;
-  height: 7px;
+  bottom: -6px;
+  left: 6%;
+  right: 6%;
+  height: 12px;
+  background: radial-gradient(ellipse at center, rgba(224, 242, 254, 0.7) 0%, rgba(186, 230, 253, 0.25) 50%, transparent 80%);
   border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 8px #FFFFFF, 0 0 14px rgba(186, 230, 253, 0.9);
+  filter: blur(3px);
+  pointer-events: none;
+  z-index: 1;
 }
-
-.marquee-char .bulb-dot.top-left { top: 5px; left: 5px; }
-.marquee-char .bulb-dot.top-right { top: 5px; right: 5px; }
-.marquee-char .bulb-dot.bot-left { bottom: 5px; left: 5px; }
-.marquee-char .bulb-dot.bot-right { bottom: 5px; right: 5px; }
 
 /* Real Photo Showcase Badge and Cards */
 .real-badge {
@@ -1269,6 +1294,10 @@ section {
   backdrop-filter: blur(8px);
   padding: 4px 14px;
   border-radius: var(--radius-full);
+}
+
+.gallery-toggle-wrap {
+  display: none;
 }
 
 /* --- Section: Como Funciona / Etapas --- */
@@ -2164,23 +2193,24 @@ select.form-control option {
     font-size: 1.35rem;
   }
   .virtual-stage {
-    min-height: 140px;
-    padding: 22px 10px;
-    margin-bottom: 20px;
+    min-height: 135px;
+    padding: 20px 8px 28px;
+    margin-bottom: 18px;
   }
   .stage-letters-container {
-    gap: 8px;
+    gap: clamp(4px, 1.2vw, 8px);
   }
   .marquee-char {
-    width: clamp(38px, 10vw, 54px);
-    height: clamp(50px, 13vw, 70px);
-    font-size: clamp(1.4rem, 4.5vw, 2rem);
-    border-width: 2px;
-    border-radius: 8px;
+    min-width: clamp(20px, 5vw, 36px);
+    height: clamp(52px, 12.5vw, 74px);
   }
-  .marquee-char .bulb-dot {
-    width: 5px;
-    height: 5px;
+  .marquee-glyph {
+    font-size: clamp(2.2rem, 6.8vw, 3.1rem);
+    -webkit-text-stroke: 1px #E2E8F0;
+  }
+  .marquee-floor-reflection {
+    height: 8px;
+    bottom: -4px;
   }
   .quick-presets {
     gap: 6px;
@@ -2202,6 +2232,47 @@ select.form-control option {
     white-space: normal;
     text-align: center;
   }
+
+  /* LED Features: Pequenos cards internos em tópicos (Grid 2x2 compacto no celular) */
+  .led-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .led-feature-card {
+    padding: 12px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    border-radius: var(--radius-sm);
+    background: rgba(20, 22, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .led-feature-card:hover {
+    transform: none;
+  }
+  .led-icon-box {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+  }
+  .led-feature-text h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 2px;
+    color: var(--color-gold-200);
+  }
+  .led-feature-text p {
+    font-size: 0.72rem;
+    line-height: 1.35;
+    color: #9CA3AF;
+    margin: 0;
+  }
+
   .led-real-spotlight {
     grid-template-columns: 100%;
     padding: 18px 12px;
@@ -2227,17 +2298,25 @@ select.form-control option {
     word-break: break-word;
   }
   .spotlight-specs-list {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin: 16px 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 14px 0 18px;
     width: 100%;
     box-sizing: border-box;
   }
   .spotlight-spec-item {
-    padding: 10px 12px;
+    padding: 8px 10px;
     width: 100%;
     box-sizing: border-box;
     word-break: break-word;
+  }
+  .spotlight-spec-item strong {
+    font-size: 0.74rem;
+    margin-bottom: 2px;
+  }
+  .spotlight-spec-item span {
+    font-size: 0.82rem;
   }
   .spotlight-info .btn {
     width: 100%;
@@ -2264,21 +2343,54 @@ select.form-control option {
     font-size: 1.35rem;
   }
 
-  /* Portfolio Gallery */
+  /* Portfolio Gallery: Compacto em 2 colunas com expansão via botão */
   .filter-buttons {
     gap: 8px;
-    margin: 24px 0 32px;
+    margin: 20px 0 24px;
   }
   .filter-btn {
     padding: 6px 14px;
     font-size: 0.8rem;
   }
   .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .gallery-item {
-    height: 280px;
+    height: 165px;
+    border-radius: 8px;
+  }
+  .gallery-overlay {
+    padding: 10px;
+  }
+  .gallery-overlay-tag {
+    font-size: 0.65rem;
+  }
+  .gallery-overlay-title {
+    font-size: 0.86rem;
+    margin: 2px 0 4px;
+    line-height: 1.2;
+  }
+  .gallery-expand-btn {
+    font-size: 0.68rem;
+    padding: 2px 8px;
+  }
+  /* Mostra 6 fotos inicialmente no mobile; as outras 10 ficam recolhidas */
+  .gallery-grid:not(.gallery-expanded) .gallery-item:nth-child(n+7) {
+    display: none;
+  }
+  .gallery-toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  #btnToggleGalleryMobile {
+    width: 100%;
+    max-width: 290px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 11px 18px;
+    border-radius: var(--radius-full);
   }
 
   /* Process Steps Accordion for Mobile */
@@ -2388,18 +2500,30 @@ select.form-control option {
     padding: 13px;
   }
 
-  /* Testimonials */
+  /* Testimonials: Carousel horizontal deslizante para economizar rolagem vertical */
   .testimonials-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-top: 30px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 6px 4px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .testimonials-grid::-webkit-scrollbar {
+    display: none;
   }
   .testimonial-card {
-    padding: 24px 20px;
+    flex: 0 0 88%;
+    min-width: 88%;
+    scroll-snap-align: start;
+    padding: 18px 16px;
     border-radius: var(--radius-md);
   }
   .testimonial-quote {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
 
   /* Instagram Banner */
@@ -2530,14 +2654,19 @@ select.form-control option {
     font-size: 0.72rem;
   }
   .marquee-char {
-    width: clamp(34px, 9vw, 44px);
-    height: clamp(46px, 12vw, 58px);
-    font-size: clamp(1.25rem, 4vw, 1.7rem);
-    border-radius: 6px;
+    min-width: clamp(16px, 4.5vw, 30px);
+    height: clamp(44px, 10.5vw, 62px);
+  }
+  .marquee-glyph {
+    font-size: clamp(1.8rem, 5.8vw, 2.5rem);
+    -webkit-text-stroke: 0.8px #E2E8F0;
+  }
+  .marquee-spacer {
+    width: clamp(8px, 2.5vw, 16px);
   }
   .virtual-stage {
-    min-height: 120px;
-    padding: 16px 6px;
+    min-height: 115px;
+    padding: 14px 4px 22px;
   }
   .spotlight-img-box {
     height: 230px;

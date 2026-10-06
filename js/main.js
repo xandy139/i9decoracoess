@@ -77,23 +77,26 @@ function initLedSimulator() {
     chars.forEach(char => {
       if (char === ' ') {
         const spacer = document.createElement('div');
-        spacer.style.width = '20px';
+        spacer.className = 'marquee-spacer';
         stage.appendChild(spacer);
         return;
       }
 
-      const letterBox = document.createElement('div');
-      letterBox.className = `marquee-char ${currentGlowMode}`;
-      letterBox.innerText = char === '&' ? '&' : char;
+      // Freestanding 3D Cut-out Marquee Channel Letter (Letter-by-letter without square boxes)
+      const letterChar = document.createElement('div');
+      letterChar.className = `marquee-char ${currentGlowMode}`;
 
-      // Add 4 mini bulb light corners
-      ['top-left', 'top-right', 'bot-left', 'bot-right'].forEach(pos => {
-        const bulb = document.createElement('span');
-        bulb.className = `bulb-dot ${pos}`;
-        letterBox.appendChild(bulb);
-      });
+      const glyph = document.createElement('span');
+      glyph.className = 'marquee-glyph';
+      glyph.innerText = char === '&' ? '&' : char;
+      letterChar.appendChild(glyph);
 
-      stage.appendChild(letterBox);
+      // 3D floor reflection oval under freestanding letter
+      const floorGlow = document.createElement('span');
+      floorGlow.className = 'marquee-floor-reflection';
+      letterChar.appendChild(floorGlow);
+
+      stage.appendChild(letterChar);
     });
   }
 
@@ -188,6 +191,21 @@ function initPortfolioFilter() {
       });
     });
   });
+
+  // Mobile Gallery Toggle (Expand/Collapse to save vertical scroll)
+  const btnToggleGalleryMobile = document.getElementById('btnToggleGalleryMobile');
+  const galleryGrid = document.getElementById('galleryGrid');
+  if (btnToggleGalleryMobile && galleryGrid) {
+    btnToggleGalleryMobile.addEventListener('click', () => {
+      const isExpanded = galleryGrid.classList.toggle('gallery-expanded');
+      btnToggleGalleryMobile.innerHTML = isExpanded 
+        ? '▴ Mostrar Menos Fotos' 
+        : '📸 Ver Mais Fotos (+10) ▾';
+      if (!isExpanded) {
+        galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
 }
 
 /* ==========================================================================
