@@ -1,6 +1,6 @@
 # i9 Decorações - Festas, Casamentos & Os Maiores Letreiros de LED de Londrina (1,20m) 🥂✨
 
-Website institucional e comercial de alta conversão desenvolvido para a **i9 Decorações**, especialista em cenografia floral de alto padrão para casamentos, debutantes e locação exclusiva dos **maiores letreiros de LED de Londrina e região (1,20m de altura)** em **luz fria (LED branco frio)**.
+Website institucional e comercial de alta conversão desenvolvido para a **i9 Decorações**, decorações refinadas para casamentos, debutantes e locação exclusiva dos **maiores letreiros de LED de Londrina e região (1,20m de altura)** em **luz fria (LED branco frio)**.
 
 ---
 
