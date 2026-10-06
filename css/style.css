@@ -476,52 +476,6 @@ button, input, select, textarea {
   margin-bottom: 3.5rem;
 }
 
-/* Hero Real Photo Featured Card (Prominently displayed on mobile for full uncropped view) */
-.hero-real-showcase-card {
-  display: none;
-  width: 100%;
-  max-width: 480px;
-  margin: 12px auto 26px;
-}
-
-.hero-photo-frame {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1.5px solid var(--border-gold-glow);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(216, 175, 79, 0.2);
-}
-
-.hero-photo-img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: center 75%;
-  display: block;
-}
-
-.hero-photo-badge {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-  background: rgba(10, 11, 14, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-gold-subtle);
-  border-radius: var(--radius-full);
-  padding: 6px 12px;
-  text-align: center;
-}
-
-.hero-photo-badge span {
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--color-gold-200);
-  letter-spacing: 0.5px;
-}
-
 /* Floating LED Marquee badge in hero */
 .hero-marquee-showcase {
   background: rgba(19, 21, 27, 0.75);
@@ -2069,10 +2023,11 @@ select.form-control option {
   /* Hero Section */
   .hero {
     min-height: auto;
-    padding: 32px 0 45px;
+    padding: 44px 0 48px;
     background: 
-      radial-gradient(circle at 50% 15%, rgba(216, 175, 79, 0.12) 0%, transparent 60%),
-      linear-gradient(180deg, #0A0B0E 0%, #12151D 60%, #0A0B0E 100%);
+      radial-gradient(circle at 50% 20%, rgba(216, 175, 79, 0.22) 0%, transparent 65%),
+      linear-gradient(180deg, rgba(10, 11, 14, 0.70) 0%, rgba(10, 11, 14, 0.85) 55%, #0A0B0E 100%),
+      url('../assets/images/real/casamento_love_real.jpg') center bottom / cover no-repeat;
   }
   .hero-backdrop-glow {
     width: 90%;
@@ -2096,12 +2051,6 @@ select.form-control option {
     font-size: 0.92rem;
     line-height: 1.55;
     margin-bottom: 1.4rem;
-  }
-  .hero-real-showcase-card {
-    display: block !important;
-    width: 100%;
-    max-width: 440px;
-    margin: 10px auto 22px;
   }
   .hero-ctas {
     flex-direction: column;
