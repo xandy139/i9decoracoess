@@ -1729,6 +1729,17 @@ select.form-control option {
   font-size: 0.84rem;
 }
 
+.footer-credits {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2px;
+}
+
+.footer-credits .credit-author {
+  color: var(--color-gold-200);
+  font-weight: 500;
+}
+
 .footer-social-icons {
   display: flex;
   gap: 14px;
