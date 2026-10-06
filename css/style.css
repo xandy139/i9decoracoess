@@ -772,8 +772,7 @@ section {
   border: none !important;
   border-radius: 0 !important;
   width: auto;
-  min-width: clamp(26px, 6vw, 46px);
-  height: clamp(65px, 15vw, 95px);
+  min-width: clamp(20px, 4.5vw, 36px);
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -782,12 +781,35 @@ section {
   user-select: none;
   flex-shrink: 0;
   box-shadow: none !important;
-  padding: 0 2px;
+  padding: 0 1px;
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .marquee-char:hover {
-  transform: translateY(-5px) scale(1.05);
+  transform: translateY(-5px) scale(1.04);
+}
+
+/* Authentic 3D Marquee Letter with Real Metal Channel Chassis and Cold White LED Bulbs */
+.marquee-letter-img {
+  display: block;
+  height: clamp(80px, 16vw, 115px);
+  width: auto;
+  max-width: none;
+  user-select: none;
+  pointer-events: none;
+  /* Deep 3D drop shadow on floor + radiant cold white LED halo glow */
+  filter: drop-shadow(0 12px 14px rgba(0, 0, 0, 0.8))
+          drop-shadow(0 0 14px rgba(224, 242, 254, 0.6))
+          drop-shadow(0 0 28px rgba(186, 230, 253, 0.35));
+  position: relative;
+  z-index: 2;
+  transition: filter 0.25s ease;
+}
+
+.marquee-char:hover .marquee-letter-img {
+  filter: drop-shadow(0 16px 18px rgba(0, 0, 0, 0.9))
+          drop-shadow(0 0 20px rgba(224, 242, 254, 0.85))
+          drop-shadow(0 0 38px rgba(186, 230, 253, 0.5));
 }
 
 .marquee-spacer {
@@ -2331,8 +2353,11 @@ select.form-control option {
     gap: clamp(3px, 1.2vw, 6px);
   }
   .marquee-char {
-    min-width: clamp(18px, 4.5vw, 32px);
-    height: clamp(48px, 11vw, 68px);
+    min-width: clamp(16px, 4vw, 28px);
+    height: auto;
+  }
+  .marquee-letter-img {
+    height: clamp(56px, 13vw, 80px);
   }
   .marquee-glyph {
     font-size: clamp(2rem, 6.2vw, 2.8rem);
@@ -2775,8 +2800,11 @@ select.form-control option {
     font-size: 0.72rem;
   }
   .marquee-char {
-    min-width: clamp(16px, 4.5vw, 30px);
-    height: clamp(44px, 10.5vw, 62px);
+    min-width: clamp(14px, 3.8vw, 24px);
+    height: auto;
+  }
+  .marquee-letter-img {
+    height: clamp(48px, 12vw, 68px);
   }
   .marquee-glyph {
     font-size: clamp(1.8rem, 5.8vw, 2.5rem);

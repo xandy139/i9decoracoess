@@ -82,10 +82,27 @@ function initLedSimulator() {
 
   if (!stage || !lettersContainer || !input) return;
 
+  const MARQUEE_IMAGE_MAP = {
+    '#': 'hash.png',
+    '&': 'amp.png',
+    '❤️': 'heart.png',
+    '❤': 'heart.png'
+  };
+
+  function getMarqueeAsset(char) {
+    if (MARQUEE_IMAGE_MAP[char]) return MARQUEE_IMAGE_MAP[char];
+    const norm = char.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase();
+    if (/^[A-Z0-9]$/.test(norm)) {
+      return `${norm}.png`;
+    }
+    return null;
+  }
+
   function renderLetters(text) {
     lettersContainer.innerHTML = '';
     const cleanText = text.trim().toUpperCase() || 'LOVE';
-    const chars = cleanText.slice(0, 10).split('');
+    const stripped = cleanText.replace(/\uFE0F/g, '');
+    const chars = Array.from(stripped).slice(0, 12);
 
     chars.forEach(char => {
       if (char === ' ') {
@@ -99,10 +116,21 @@ function initLedSimulator() {
       const letterChar = document.createElement('div');
       letterChar.className = `marquee-char ${currentGlowMode}`;
 
-      const glyph = document.createElement('span');
-      glyph.className = 'marquee-glyph';
-      glyph.innerText = char === '&' ? '&' : char;
-      letterChar.appendChild(glyph);
+      const assetName = getMarqueeAsset(char);
+      if (assetName) {
+        const img = document.createElement('img');
+        img.className = 'marquee-letter-img';
+        img.src = `images/marquee-letters/${assetName}`;
+        img.alt = char;
+        img.loading = 'eager';
+        img.draggable = false;
+        letterChar.appendChild(img);
+      } else {
+        const glyph = document.createElement('span');
+        glyph.className = 'marquee-glyph';
+        glyph.innerText = char;
+        letterChar.appendChild(glyph);
+      }
 
       // Floor reflection under freestanding letter
       const floorGlow = document.createElement('span');
@@ -318,29 +346,62 @@ function initLedSimulator() {
         ctx.fillStyle = '#F4E2BB';
         ctx.fillText('i9 DECORAÇÕES', 45, 54);
 
-        // Calculate letters position on canvas
+        // Calculate letters position and draw each 3D letter on canvas
         const scaleFactor = canvas.width / stageRect.width;
-        const lettersRect = lettersContainer.getBoundingClientRect();
-        const centerCanvasX = (lettersRect.left - stageRect.left + lettersRect.width / 2) * scaleFactor;
-        const centerCanvasY = (lettersRect.top - stageRect.top + lettersRect.height / 2) * scaleFactor;
-
-        // Render letters text on canvas
         const currentText = input.value.trim().toUpperCase() || 'LOVE';
-        const fontSize = Math.round(58 * currentScale * scaleFactor);
-        ctx.font = `900 ${fontSize}px "Montserrat", sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        const letterNodes = lettersContainer.querySelectorAll('.marquee-char');
 
-        // Floor glow
-        ctx.shadowColor = 'rgba(186, 230, 253, 0.9)';
-        ctx.shadowBlur = 45;
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillText(currentText, centerCanvasX, centerCanvasY);
+        if (letterNodes.length > 0) {
+          letterNodes.forEach(node => {
+            const img = node.querySelector('.marquee-letter-img');
+            const rect = node.getBoundingClientRect();
+            const nodeX = (rect.left - stageRect.left) * scaleFactor;
+            const nodeY = (rect.top - stageRect.top) * scaleFactor;
+            const nodeW = rect.width * scaleFactor;
+            const nodeH = rect.height * scaleFactor;
 
-        // Crisp white text pass
-        ctx.shadowColor = 'rgba(255, 255, 255, 1)';
-        ctx.shadowBlur = 20;
-        ctx.fillText(currentText, centerCanvasX, centerCanvasY);
+            // Draw floor light reflection
+            ctx.save();
+            ctx.beginPath();
+            ctx.ellipse(nodeX + nodeW / 2, nodeY + nodeH - 4 * scaleFactor, nodeW * 0.42, 10 * scaleFactor, 0, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(224, 242, 254, 0.4)';
+            ctx.filter = 'blur(6px)';
+            ctx.fill();
+            ctx.restore();
+
+            if (img && img.complete && img.naturalWidth > 0) {
+              const imgRect = img.getBoundingClientRect();
+              const imgX = (imgRect.left - stageRect.left) * scaleFactor;
+              const imgY = (imgRect.top - stageRect.top) * scaleFactor;
+              const imgW = imgRect.width * scaleFactor;
+              const imgH = imgRect.height * scaleFactor;
+
+              // Draw drop shadow & LED glow
+              ctx.save();
+              ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+              ctx.shadowBlur = 16 * scaleFactor;
+              ctx.shadowOffsetY = 10 * scaleFactor;
+              ctx.drawImage(img, imgX, imgY, imgW, imgH);
+              ctx.restore();
+
+              // Extra pass for crisp brilliance
+              ctx.drawImage(img, imgX, imgY, imgW, imgH);
+            } else {
+              const glyph = node.querySelector('.marquee-glyph');
+              if (glyph) {
+                ctx.save();
+                ctx.font = `900 ${Math.round(54 * currentScale * scaleFactor)}px "Montserrat", sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.shadowColor = 'rgba(224, 242, 254, 0.9)';
+                ctx.shadowBlur = 24 * scaleFactor;
+                ctx.fillStyle = '#FFFFFF';
+                ctx.fillText(glyph.innerText, nodeX + nodeW / 2, nodeY + nodeH / 2);
+                ctx.restore();
+              }
+            }
+          });
+        }
 
         // Trigger download
         const link = document.createElement('a');
