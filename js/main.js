@@ -53,7 +53,7 @@ function initLedSimulator() {
   const glowBtns = document.querySelectorAll('.glow-btn');
   const applyToFormBtn = document.getElementById('btnApplyLedToQuote');
 
-  let currentGlowMode = 'glow-amber';
+  let currentGlowMode = 'glow-cold-white';
 
   if (!stage || !input) return;
 
@@ -314,7 +314,7 @@ function initBudgetCalculator() {
     }
 
     if (ledText) {
-      msg += `💡 *Letras de LED Desejadas:* "${ledText}"\n\n`;
+      msg += `💡 *Letras de LED (1,20m - Luz Fria):* "${ledText}"\n\n`;
     }
 
     if (notes) {

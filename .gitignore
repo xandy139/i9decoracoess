@@ -12,6 +12,7 @@ scratch/
 .DS_Store
 Thumbs.db
 desktop.ini
+*.zip
 
 # Environment
 .env

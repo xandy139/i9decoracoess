@@ -1,34 +1,32 @@
-# i9 Decorações - Festas, Casamentos & Letras de LED Gigantes 🥂✨
+# i9 Decorações - Festas, Casamentos & Os Maiores Letreiros de LED de Londrina (1,20m) 🥂✨
 
-Website institucional e comercial de alta conversão desenvolvido para a **i9 Decorações**, especialista em cenografia floral de alto padrão para casamentos, debutantes e locação exclusiva de Letras de LED Gigantes.
+Website institucional e comercial de alta conversão desenvolvido para a **i9 Decorações**, especialista em cenografia floral de alto padrão para casamentos, debutantes e locação exclusiva dos **maiores letreiros de LED de Londrina e região (1,20m de altura)** em **luz fria (LED branco frio)**.
 
 ---
 
-## 🌟 Funcionalidades Principais
+## 🌟 Diferenciais & Funcionalidades Principais
 
-1. **Design Sofisticado & Identidade Visual:**
-   - Paleta refinada com Dourado Champagne, Branco Perolado e Grafite Escuro.
-   - Tipografia de luxo (*Cormorant Garamond*, *Playfair Display* e *Plus Jakarta Sans*).
-   - Micro-interações, sombras iluminadas e efeitos de iluminação cênica.
+1. **Os Maiores Letreiros de Londrina e Região (1,20m de Altura):**
+   - Estrutura robusta tridimensional em caixa alta branca acetinada com base firme.
+   - Escala real monumental (1,20m) que alcança a altura do tronco, muito superior às letrinhas de 70cm a 90cm comuns do mercado.
+   - **Exclusividade em Luz Fria:** Lâmpadas globo de LED em tom branco frio cristalino, entregando nitidez fotográfica impecável sem interferir nas cores dos vestidos e sem amarelamento.
 
-2. **Simulador Interativo de Letras de LED:**
-   - Permite que o cliente digite o nome do casal, palavras ou iniciais (ex: `#15`, `LOVE`, `A & M`, `SR & SRA`).
-   - Lâmpadas bolinha estilo *vintage marquee* com renderização realista.
-   - Alternância de cores de luz: Âmbar Vintage, Branco Quente e Rosa Neon.
-   - Botão *"Quero Essas Letras no Meu Evento"* que transfere a escolha diretamente para o orçamento.
+2. **100% Fotos Reais do Acervo da Jaine:**
+   - Todas as fotos ilusórias foram substituídas por registros autênticos de eventos reais atendidos pela i9 Decorações (no Tsuru Centro de Eventos, Espaço Luz, casamentos ao ar livre, etc.).
 
-3. **Portfólio com Filtro por Categoria & Lightbox Fullscreen:**
-   - Categorias: Todos, Casamentos, Letras de LED, Mesas de Doces e 15 Anos.
+3. **Simulador Interativo de Letras de 1,20m:**
+   - Permite que o cliente digite nomes, palavras ou iniciais (ex: `#15`, `LOVE`, `G & V`, `MARIA`, `ANA JULIA`, `E & L`).
+   - Renderização realista de lâmpadas globo em LED Branco Frio com modos cênicos (Luz Contínua, Pulso Suave e Brilho Intenso).
+   - Botão *"Quero Essas Letras no Meu Evento"* que transfere a escolha diretamente para a mensagem do WhatsApp.
+
+4. **Portfólio com Filtro por Categoria & Lightbox Fullscreen:**
+   - Categorias: Todos os Cenários Reais, Casamentos, 15 Anos & Debutantes, Letreiros 1,20m, Portais & Corações e Aniversários/Bodas.
    - Visualizador de fotos em tela cheia com navegação por setas e suporte à tecla `ESC`.
-   - Inclui a **foto real do acervo (`#15`)** com destaque exclusivo.
 
-4. **Gerador de Orçamento Direto para o WhatsApp:**
-   - Formulário intuitivo (Nome, Tipo de Evento, Data Prevista, Local, Nº de Convidados e Serviços).
+5. **Gerador de Orçamento Direto para o WhatsApp:**
+   - Formulário intuitivo calibrado para a região de Londrina, Cambé, Ibiporã, Rolândia e região metropolitana.
    - Prévia dinâmica estilo conversa de WhatsApp em tempo real.
    - Botão de envio que formata o texto com emojis e abre a conversa no WhatsApp automaticamente.
-
-5. **100% Autônomo (Zero Dependência de Imagens Externas):**
-   - Todas as fotos, avatares, fundos e a logo oficial estão salvos localmente em `assets/images/`, garantindo carregamento ultrarrápido e sem risco de links quebrados no Vercel.
 
 ---
 

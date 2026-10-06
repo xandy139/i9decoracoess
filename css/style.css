@@ -387,8 +387,8 @@ button, input, select, textarea {
   background: 
     radial-gradient(circle at 50% 25%, rgba(216, 175, 79, 0.18) 0%, transparent 60%),
     radial-gradient(circle at 15% 80%, rgba(255, 169, 56, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(10, 11, 14, 0.6) 0%, rgba(10, 11, 14, 0.95) 100%),
-    url('../assets/images/casamento_altar.jpg') center/cover no-repeat;
+    linear-gradient(180deg, rgba(10, 11, 14, 0.65) 0%, rgba(10, 11, 14, 0.95) 100%),
+    url('../assets/images/real/casamento_love_real.jpg') center/cover no-repeat;
 }
 
 .hero-backdrop-glow {
@@ -483,15 +483,15 @@ button, input, select, textarea {
   justify-content: center;
   width: 44px;
   height: 48px;
-  background: #181920;
-  border: 2px solid var(--color-gold-400);
+  background: #FFFFFF;
+  border: 2px solid #E5E7EB;
   border-radius: 8px;
   font-family: var(--font-accent);
   font-size: 1.4rem;
   font-weight: 700;
-  color: #FFF3DD;
-  text-shadow: var(--led-glow-amber);
-  box-shadow: inset 0 0 10px rgba(255, 169, 56, 0.4), 0 0 15px rgba(255, 169, 56, 0.5);
+  color: #111827;
+  text-shadow: 0 0 10px #FFFFFF, 0 0 20px rgba(186, 230, 253, 0.9);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8), 0 0 18px rgba(255, 255, 255, 0.7);
   position: relative;
 }
 
@@ -684,38 +684,58 @@ section {
     0 10px 25px rgba(0, 0, 0, 0.7);
 }
 
-/* Bulb Glow Modes with White Casing Reflection */
-.marquee-char.glow-amber {
-  color: #B45309;
-  border-color: #FEF3C7;
-  background: #FFFDF9;
-  text-shadow: 0 0 12px rgba(255, 169, 56, 0.95), 0 0 24px rgba(255, 140, 0, 0.7);
-  box-shadow: 
-    inset 0 2px 12px rgba(255, 180, 50, 0.4),
-    0 0 25px rgba(255, 170, 50, 0.65),
-    0 12px 25px rgba(0, 0, 0, 0.7);
-}
-
-.marquee-char.glow-white {
-  color: #374151;
+/* Exclusively Cold White LED Lighting (Luz Fria) */
+.marquee-char.glow-cold-white,
+.marquee-char.glow-white,
+.marquee-char.glow-amber,
+.marquee-char.glow-pink {
+  color: #111827;
   border-color: #FFFFFF;
   background: #FFFFFF;
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.95), 0 0 26px rgba(240, 240, 240, 0.8);
+  text-shadow: 0 0 16px rgba(255, 255, 255, 1), 0 0 28px rgba(220, 240, 255, 0.95);
   box-shadow: 
-    inset 0 2px 12px rgba(255, 255, 255, 0.6),
-    0 0 28px rgba(255, 255, 255, 0.75),
-    0 12px 25px rgba(0, 0, 0, 0.7);
+    inset 0 2px 14px rgba(255, 255, 255, 0.8),
+    0 0 32px rgba(255, 255, 255, 0.9),
+    0 0 65px rgba(186, 230, 253, 0.5),
+    0 12px 25px rgba(0, 0, 0, 0.75);
 }
 
-.marquee-char.glow-pink {
-  color: #BE185D;
-  border-color: #FCE7F3;
-  background: #FFFBFD;
-  text-shadow: 0 0 12px rgba(255, 102, 178, 0.95), 0 0 24px rgba(255, 20, 140, 0.7);
+.marquee-char.glow-pulse {
+  color: #111827;
+  border-color: #FFFFFF;
+  background: #FFFFFF;
+  animation: coldGlowPulse 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes coldGlowPulse {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(186, 230, 253, 0.6);
+    box-shadow: 
+      inset 0 2px 10px rgba(255, 255, 255, 0.6),
+      0 0 24px rgba(255, 255, 255, 0.75),
+      0 0 45px rgba(186, 230, 253, 0.35),
+      0 12px 25px rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 35px rgba(224, 242, 254, 1);
+    box-shadow: 
+      inset 0 2px 16px rgba(255, 255, 255, 0.9),
+      0 0 45px rgba(255, 255, 255, 1),
+      0 0 85px rgba(186, 230, 253, 0.75),
+      0 14px 28px rgba(0, 0, 0, 0.8);
+  }
+}
+
+.marquee-char.glow-intense {
+  color: #030712;
+  border-color: #FFFFFF;
+  background: #FFFFFF;
+  text-shadow: 0 0 22px rgba(255, 255, 255, 1), 0 0 45px rgba(224, 242, 254, 1);
   box-shadow: 
-    inset 0 2px 12px rgba(255, 102, 178, 0.45),
-    0 0 28px rgba(255, 50, 150, 0.65),
-    0 12px 25px rgba(0, 0, 0, 0.7);
+    inset 0 2px 16px rgba(255, 255, 255, 1),
+    0 0 50px rgba(255, 255, 255, 1),
+    0 0 95px rgba(186, 230, 253, 0.75),
+    0 14px 30px rgba(0, 0, 0, 0.8);
 }
 
 .marquee-char .bulb-dot {
@@ -723,9 +743,9 @@ section {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #FFF;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 8px #FFF, 0 0 12px var(--led-amber);
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 8px #FFFFFF, 0 0 14px rgba(186, 230, 253, 0.9);
 }
 
 .marquee-char .bulb-dot.top-left { top: 5px; left: 5px; }
@@ -892,10 +912,36 @@ section {
   color: #FFF;
 }
 
+.led-feature-notice {
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.led-feature-notice .notice-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.led-feature-notice .notice-text {
+  font-size: 0.82rem;
+  color: #BAE6FD;
+  line-height: 1.45;
+}
+
+.led-feature-notice .notice-text strong {
+  color: #FFFFFF;
+}
+
 .color-switcher {
   display: flex;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .glow-btn {
@@ -905,17 +951,23 @@ section {
   padding: 6px 14px;
   border-radius: var(--radius-full);
   background: #181A22;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #D1D5DB;
   font-size: 0.82rem;
   cursor: pointer;
   transition: all var(--transition-fast);
 }
 
-.glow-btn.active {
-  border-color: var(--color-gold-400);
+.glow-btn:hover {
+  border-color: rgba(255, 255, 255, 0.3);
   color: #FFF;
-  background: rgba(216, 175, 79, 0.15);
+}
+
+.glow-btn.active {
+  border-color: #38BDF8;
+  color: #FFF;
+  background: rgba(14, 165, 233, 0.18);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
 }
 
 .color-dot {
@@ -923,9 +975,11 @@ section {
   height: 10px;
   border-radius: 50%;
 }
-.color-dot.amber { background: #FFA938; box-shadow: 0 0 6px #FFA938; }
-.color-dot.white { background: #FFFFFF; box-shadow: 0 0 6px #FFFFFF; }
-.color-dot.pink { background: #FF66B2; box-shadow: 0 0 6px #FF66B2; }
+.color-dot.white { 
+  background: #FFFFFF; 
+  box-shadow: 0 0 8px #FFFFFF, 0 0 12px rgba(186, 230, 253, 0.8); 
+}
+
 
 /* Right Column: LED Features & Benefits */
 .led-features {
