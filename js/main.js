@@ -258,8 +258,8 @@ function initBudgetCalculator() {
   const waPreviewBubble = document.getElementById('waPreviewBubble');
   const sendWaBtn = document.getElementById('btnSendWhatsApp');
 
-  // Contact WhatsApp of I9 Decorações (default placeholder, can be customized)
-  const WHATSAPP_PHONE = '5511999999999'; // Default Brazilian wedding vendor format
+  // Contact WhatsApp of i9 Decorações
+  const WHATSAPP_PHONE = '5543988080315';
 
   // Sync checkboxes styling
   checkboxes.forEach(chk => {

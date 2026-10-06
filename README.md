@@ -26,7 +26,7 @@ Website institucional e comercial de alta conversão desenvolvido para a **i9 De
 5. **Gerador de Orçamento Direto para o WhatsApp:**
    - Formulário intuitivo calibrado para a região de Londrina, Cambé, Ibiporã, Rolândia e região metropolitana.
    - Prévia dinâmica estilo conversa de WhatsApp em tempo real.
-   - Botão de envio que formata o texto com emojis e abre a conversa no WhatsApp automaticamente.
+   - Envio direto e automatizado para o WhatsApp oficial da i9 Decorações: **+55 (43) 98808-0315**.
 
 ---
 
