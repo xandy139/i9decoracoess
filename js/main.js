@@ -54,35 +54,48 @@ function initNavbar() {
 }
 
 /* ==========================================================================
-   2. Interactive LED Marquee Simulator
+   2. Interactive LED Marquee Simulator (Venue Preview & Draggable Letters)
    ========================================================================== */
 function initLedSimulator() {
-  const stage = document.getElementById('stageLettersContainer');
+  const stage = document.getElementById('virtualStage');
+  const lettersContainer = document.getElementById('stageLettersContainer');
   const input = document.getElementById('ledTextInput');
   const presetChips = document.querySelectorAll('.preset-chip');
-  const glowBtns = document.querySelectorAll('.glow-btn');
   const applyToFormBtn = document.getElementById('btnApplyLedToQuote');
+  const saveSimBtn = document.getElementById('btnSaveSimulation');
+  const bgImg = document.getElementById('simVenueBg');
+  const photoInput = document.getElementById('venuePhotoInput');
+  const backdropBtns = document.querySelectorAll('.backdrop-btn');
+  const scaleSlider = document.getElementById('simScaleSlider');
+  const scaleLabel = document.getElementById('scaleValueDisplay');
+  const dragHint = document.getElementById('stageDragHint');
 
-  let currentGlowMode = 'glow-cold-white';
+  const currentGlowMode = 'glow-cold-white';
+  let currentScale = 1;
+  let posX = 0;
+  let posY = 0;
+  let isDragging = false;
+  let startPointerX = 0;
+  let startPointerY = 0;
+  let startPosX = 0;
+  let startPosY = 0;
 
-  if (!stage || !input) return;
+  if (!stage || !lettersContainer || !input) return;
 
   function renderLetters(text) {
-    stage.innerHTML = '';
+    lettersContainer.innerHTML = '';
     const cleanText = text.trim().toUpperCase() || 'LOVE';
-
-    // Limit to 10 characters for aesthetics on screen
     const chars = cleanText.slice(0, 10).split('');
 
     chars.forEach(char => {
       if (char === ' ') {
         const spacer = document.createElement('div');
         spacer.className = 'marquee-spacer';
-        stage.appendChild(spacer);
+        lettersContainer.appendChild(spacer);
         return;
       }
 
-      // Freestanding 3D Cut-out Marquee Channel Letter (Letter-by-letter without square boxes)
+      // Freestanding 3D Cut-out Marquee Channel Letter (1,20m)
       const letterChar = document.createElement('div');
       letterChar.className = `marquee-char ${currentGlowMode}`;
 
@@ -91,19 +104,131 @@ function initLedSimulator() {
       glyph.innerText = char === '&' ? '&' : char;
       letterChar.appendChild(glyph);
 
-      // 3D floor reflection oval under freestanding letter
+      // Floor reflection under freestanding letter
       const floorGlow = document.createElement('span');
       floorGlow.className = 'marquee-floor-reflection';
       letterChar.appendChild(floorGlow);
 
-      stage.appendChild(letterChar);
+      lettersContainer.appendChild(letterChar);
+    });
+
+    updateLettersPosition();
+  }
+
+  function updateLettersPosition() {
+    lettersContainer.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${currentScale})`;
+  }
+
+  // --- Drag & Drop Engine (Pointer Events for Touch + Mouse) ---
+  lettersContainer.addEventListener('pointerdown', (e) => {
+    if (e.button && e.button !== 0) return;
+    isDragging = true;
+    try { lettersContainer.setPointerCapture(e.pointerId); } catch (_) {}
+    lettersContainer.classList.add('is-dragging');
+    
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    startPosX = posX;
+    startPosY = posY;
+
+    if (dragHint) dragHint.style.opacity = '0';
+  });
+
+  lettersContainer.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startPointerX;
+    const deltaY = e.clientY - startPointerY;
+
+    posX = startPosX + deltaX;
+    posY = startPosY + deltaY;
+
+    // Bounds checking inside virtual stage
+    const stageRect = stage.getBoundingClientRect();
+    const halfW = (stageRect.width * 0.46);
+    const halfH = (stageRect.height * 0.44);
+
+    posX = Math.max(-halfW, Math.min(halfW, posX));
+    posY = Math.max(-halfH, Math.min(halfH, posY));
+
+    updateLettersPosition();
+  });
+
+  const stopDrag = (e) => {
+    if (isDragging) {
+      isDragging = false;
+      lettersContainer.classList.remove('is-dragging');
+      try { lettersContainer.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+  };
+
+  lettersContainer.addEventListener('pointerup', stopDrag);
+  lettersContainer.addEventListener('pointercancel', stopDrag);
+
+  // --- Scale / Proportion Slider ---
+  if (scaleSlider) {
+    scaleSlider.addEventListener('input', (e) => {
+      currentScale = parseInt(e.target.value, 10) / 100;
+      if (scaleLabel) {
+        if (currentScale <= 0.75) scaleLabel.innerText = 'Ao Fundo (Menor)';
+        else if (currentScale >= 1.25) scaleLabel.innerText = 'Primeiro Plano (Maior)';
+        else scaleLabel.innerText = 'Padrão 1,20m';
+      }
+      updateLettersPosition();
+    });
+  }
+
+  // --- Backdrop Presets Switcher ---
+  backdropBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      backdropBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const bgUrl = btn.getAttribute('data-bg');
+      if (bgUrl === 'stage-dark') {
+        if (bgImg) bgImg.style.display = 'none';
+        stage.style.background = 'radial-gradient(ellipse at 50% 95%, rgba(30, 41, 59, 0.95) 0%, #0B0E17 65%), #060911';
+      } else {
+        if (bgImg) {
+          bgImg.style.display = 'block';
+          bgImg.src = bgUrl;
+        }
+        stage.style.background = '#090C12';
+      }
+    });
+  });
+
+  // --- User Custom Photo Upload ---
+  if (photoInput) {
+    photoInput.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        if (bgImg) {
+          bgImg.style.display = 'block';
+          bgImg.src = evt.target.result;
+        }
+        stage.style.background = '#090C12';
+        backdropBtns.forEach(b => b.classList.remove('active'));
+
+        // Reset letters to bottom center of uploaded photo
+        posX = 0;
+        posY = 0;
+        updateLettersPosition();
+
+        if (dragHint) {
+          dragHint.innerHTML = '<span>✨ Foto Carregada! Arraste as letras pelo salão</span>';
+          dragHint.style.opacity = '1';
+          setTimeout(() => { if (dragHint) dragHint.style.opacity = '0'; }, 3500);
+        }
+      };
+      reader.readAsDataURL(file);
     });
   }
 
   // Handle typing in input
   input.addEventListener('input', (e) => {
     renderLetters(e.target.value);
-    // Unselect preset chips if custom typing
     presetChips.forEach(c => c.classList.remove('active'));
   });
 
@@ -115,16 +240,6 @@ function initLedSimulator() {
       const val = chip.getAttribute('data-value');
       input.value = val;
       renderLetters(val);
-    });
-  });
-
-  // Glow color switcher
-  glowBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      glowBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentGlowMode = btn.getAttribute('data-glow');
-      renderLetters(input.value || 'LOVE');
     });
   });
 
@@ -142,13 +257,99 @@ function initLedSimulator() {
         if (parent) parent.classList.add('checked');
       }
       
-      // Update quote preview
       updateWhatsAppPreview();
 
-      // Scroll to budget section smoothly
       const budgetSection = document.getElementById('orcamento');
       if (budgetSection) {
         budgetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  // --- Save / Download Simulation Image ---
+  if (saveSimBtn) {
+    saveSimBtn.addEventListener('click', () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const stageRect = stage.getBoundingClientRect();
+
+        canvas.width = 1200;
+        canvas.height = Math.round((stageRect.height / stageRect.width) * 1200);
+
+        // Draw backdrop
+        if (bgImg && bgImg.style.display !== 'none' && bgImg.naturalWidth > 0) {
+          const imgRatio = bgImg.naturalWidth / bgImg.naturalHeight;
+          const canvasRatio = canvas.width / canvas.height;
+          let drawW = canvas.width;
+          let drawH = canvas.height;
+          let drawX = 0;
+          let drawY = 0;
+
+          if (imgRatio > canvasRatio) {
+            drawW = canvas.height * imgRatio;
+            drawX = (canvas.width - drawW) / 2;
+          } else {
+            drawH = canvas.width / imgRatio;
+            drawY = (canvas.height - drawH) / 2;
+          }
+
+          ctx.drawImage(bgImg, drawX, drawY, drawW, drawH);
+
+          // Dark vignette overlay
+          const grad = ctx.createLinearGradient(0, canvas.height * 0.4, 0, canvas.height);
+          grad.addColorStop(0, 'rgba(0, 0, 0, 0)');
+          grad.addColorStop(1, 'rgba(0, 0, 0, 0.7)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        } else {
+          ctx.fillStyle = '#0B0E17';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Draw discreet watermark badge
+        ctx.fillStyle = 'rgba(10, 11, 14, 0.8)';
+        ctx.fillRect(25, 25, 260, 44);
+        ctx.strokeStyle = '#D8AF4F';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(25, 25, 260, 44);
+
+        ctx.font = 'bold 18px "Cinzel", Georgia, serif';
+        ctx.fillStyle = '#F4E2BB';
+        ctx.fillText('i9 DECORAÇÕES', 45, 54);
+
+        // Calculate letters position on canvas
+        const scaleFactor = canvas.width / stageRect.width;
+        const lettersRect = lettersContainer.getBoundingClientRect();
+        const centerCanvasX = (lettersRect.left - stageRect.left + lettersRect.width / 2) * scaleFactor;
+        const centerCanvasY = (lettersRect.top - stageRect.top + lettersRect.height / 2) * scaleFactor;
+
+        // Render letters text on canvas
+        const currentText = input.value.trim().toUpperCase() || 'LOVE';
+        const fontSize = Math.round(58 * currentScale * scaleFactor);
+        ctx.font = `900 ${fontSize}px "Montserrat", sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        // Floor glow
+        ctx.shadowColor = 'rgba(186, 230, 253, 0.9)';
+        ctx.shadowBlur = 45;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillText(currentText, centerCanvasX, centerCanvasY);
+
+        // Crisp white text pass
+        ctx.shadowColor = 'rgba(255, 255, 255, 1)';
+        ctx.shadowBlur = 20;
+        ctx.fillText(currentText, centerCanvasX, centerCanvasY);
+
+        // Trigger download
+        const link = document.createElement('a');
+        link.download = `simulacao_letreiro_${currentText.replace(/[^A-Z0-9]/g, '_')}_i9decoracoes.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        console.warn('Canvas export note:', err);
+        alert('Dica: Você também pode tirar um print da tela para enviar pelo WhatsApp!');
       }
     });
   }

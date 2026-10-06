@@ -678,56 +678,92 @@ section {
   border-top: 1px solid rgba(216, 175, 79, 0.2);
 }
 
-.stage-letters-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  z-index: 2;
-  transition: all 0.3s ease;
-  max-width: 100%;
-}
-
 /* ==========================================================================
-   Giant 3D Marquee Channel Letters (1,20m Freestanding Cut-Out Letters)
-   Matches Real Physical Event Channel Letters in Pure Cold White LED
+   Giant 3D Marquee Channel Letters & Interactive Photo Simulator (1,20m)
+   Enables Venue Backdrop Preview + Draggable 3D Cold White Letters
    ========================================================================== */
 .virtual-stage {
-  min-height: 195px;
-  background: radial-gradient(ellipse at 50% 95%, rgba(30, 41, 59, 0.95) 0%, #0B0E17 65%), #060911;
-  border: 1px solid rgba(226, 232, 240, 0.14);
+  min-height: 280px;
+  height: clamp(280px, 42vw, 390px);
+  background: #090C12;
+  border: 1px solid rgba(216, 175, 79, 0.28);
   border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 16px 45px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 10px 40px rgba(0, 0, 0, 0.95), 0 15px 35px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.85), 0 15px 35px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  touch-action: none;
 }
 
-/* Floor perspective reflection line */
-.virtual-stage::after {
-  content: '';
+.stage-bg-image {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), transparent);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  filter: brightness(0.78) contrast(1.1);
   pointer-events: none;
 }
 
+.stage-overlay-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.65) 100%),
+              linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 40%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stage-drag-hint {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 14, 22, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #F1F5F9;
+  font-size: 0.76rem;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.4s ease;
+  white-space: nowrap;
+}
+
+/* Draggable container for letters */
 .stage-letters-container {
+  position: absolute;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(6px, 1.8vw, 14px);
-  flex-wrap: wrap;
-  z-index: 2;
-  position: relative;
+  gap: clamp(4px, 1.4vw, 10px);
+  flex-wrap: nowrap;
+  z-index: 3;
+  cursor: grab;
+  padding: 6px 12px;
+  touch-action: none;
+  user-select: none;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.stage-letters-container:active,
+.stage-letters-container.is-dragging {
+  cursor: grabbing;
+}
+
+.stage-letters-container.is-dragging {
+  filter: brightness(1.12);
 }
 
 /* Freestanding 3D Cut-out Marquee Character Container (NO SQUARE BOX) */
@@ -973,72 +1009,142 @@ section {
   color: #FFF;
 }
 
-.led-feature-notice {
-  background: rgba(14, 165, 233, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
+/* Backdrop selector options */
+.sim-backdrop-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.backdrop-selector-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--color-gold-200);
+  font-weight: 600;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.backdrop-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.backdrop-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #D1D5DB;
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.backdrop-btn:hover, .backdrop-btn.active {
+  background: rgba(216, 175, 79, 0.22);
+  border-color: var(--color-gold-400);
+  color: #FFF;
+  font-weight: 600;
+  box-shadow: 0 0 12px rgba(216, 175, 79, 0.25);
+}
+
+.backdrop-upload-btn {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.28));
+  border: 1px solid #38BDF8;
+  color: #E0F2FE;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.backdrop-upload-btn:hover {
+  background: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+/* Scale / Proportion Slider */
+.sim-scale-control {
   display: flex;
   align-items: center;
   gap: 12px;
+  background: rgba(20, 22, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
 }
 
-.led-feature-notice .notice-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-
-.led-feature-notice .notice-text {
-  font-size: 0.82rem;
-  color: #BAE6FD;
-  line-height: 1.45;
-}
-
-.led-feature-notice .notice-text strong {
-  color: #FFFFFF;
-}
-
-.color-switcher {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.glow-btn {
+.scale-label-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: var(--radius-full);
-  background: #181A22;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #D1D5DB;
-  font-size: 0.82rem;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #E2E8F0;
+  white-space: nowrap;
+}
+
+.scale-label-row span {
+  color: var(--color-gold-300);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.sim-range-input {
+  flex: 1;
+  accent-color: var(--color-gold-400);
   cursor: pointer;
-  transition: all var(--transition-fast);
+  height: 6px;
 }
 
-.glow-btn:hover {
-  border-color: rgba(255, 255, 255, 0.3);
+/* Action Buttons Grid */
+.sim-action-buttons {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .sim-action-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-save-sim {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #F8FAFC;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-save-sim:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #FFF;
   color: #FFF;
-}
-
-.glow-btn.active {
-  border-color: #38BDF8;
-  color: #FFF;
-  background: rgba(14, 165, 233, 0.18);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
-}
-
-.color-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.color-dot.white { 
-  background: #FFFFFF; 
-  box-shadow: 0 0 8px #FFFFFF, 0 0 12px rgba(186, 230, 253, 0.8); 
 }
 
 
@@ -2193,20 +2299,44 @@ select.form-control option {
     font-size: 1.35rem;
   }
   .virtual-stage {
-    min-height: 135px;
-    padding: 20px 8px 28px;
-    margin-bottom: 18px;
+    min-height: 220px;
+    height: 260px;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .stage-drag-hint {
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    top: 8px;
+  }
+  .backdrop-options {
+    gap: 6px;
+  }
+  .backdrop-btn, .backdrop-upload-btn {
+    font-size: 0.72rem;
+    padding: 5px 10px;
+  }
+  .sim-scale-control {
+    padding: 8px 10px;
+  }
+  .sim-action-buttons {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .btn-save-sim {
+    padding: 11px 14px;
+    font-size: 0.84rem;
   }
   .stage-letters-container {
-    gap: clamp(4px, 1.2vw, 8px);
+    gap: clamp(3px, 1.2vw, 6px);
   }
   .marquee-char {
-    min-width: clamp(20px, 5vw, 36px);
-    height: clamp(52px, 12.5vw, 74px);
+    min-width: clamp(18px, 4.5vw, 32px);
+    height: clamp(48px, 11vw, 68px);
   }
   .marquee-glyph {
-    font-size: clamp(2.2rem, 6.8vw, 3.1rem);
-    -webkit-text-stroke: 1px #E2E8F0;
+    font-size: clamp(2rem, 6.2vw, 2.8rem);
+    -webkit-text-stroke: 0.9px #E2E8F0;
   }
   .marquee-floor-reflection {
     height: 8px;
@@ -2218,15 +2348,6 @@ select.form-control option {
   .preset-chip {
     padding: 4px 10px;
     font-size: 0.75rem;
-  }
-  .led-feature-notice {
-    padding: 10px 12px;
-  }
-  .led-feature-notice .notice-icon {
-    font-size: 1.15rem;
-  }
-  .led-feature-notice .notice-text {
-    font-size: 0.78rem;
   }
   .btn {
     white-space: normal;

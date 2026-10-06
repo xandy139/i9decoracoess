@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png?v=3">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -152,19 +152,52 @@
         <!-- Interactive Simulator Card -->
         <div class="led-simulator-card">
           <div class="simulator-header">
-            <h3>Simulador Virtual de Letras de 1,20m</h3>
-            <p>Digite as iniciais do casal, nomes ou números para ver como brilham com a iluminação fria no seu evento:</p>
+            <h3>Veja o Letreiro de 1,20m no Seu Evento 📸</h3>
+            <p>Carregue uma foto do seu espaço ou escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> para ver exatamente como ficará na sua festa:</p>
           </div>
 
-          <!-- Live Visual Stage -->
+          <!-- Live Visual Stage with Photo Backdrop and Draggable Letters -->
           <div class="virtual-stage" id="virtualStage">
-            <div class="stage-letters-container" id="stageLettersContainer">
+            <img src="assets/images/casamento_principal.jpg" alt="Cenário do Salão" class="stage-bg-image" id="simVenueBg">
+            <div class="stage-overlay-vignette"></div>
+            <div class="stage-drag-hint" id="stageDragHint">
+              <span>✋ Toque e arraste as letras pelo salão</span>
+            </div>
+            <div class="stage-letters-container" id="stageLettersContainer" style="left: 50%; top: 72%;">
               <!-- Rendered via JS -->
             </div>
           </div>
 
+          <!-- Backdrop Selector & Custom Photo Upload -->
+          <div class="sim-backdrop-selector">
+            <div class="backdrop-selector-label">
+              <span>📍 Escolha o Cenário de Fundo:</span>
+              <label class="backdrop-upload-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
+                <span>📷 Carregar Minha Foto</span>
+                <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
+              </label>
+            </div>
+            <div class="backdrop-options">
+              <button type="button" class="backdrop-btn active" data-bg="assets/images/casamento_principal.jpg">
+                🏛️ Salão Nobre
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/casamento_altar.jpg">
+                🌿 Ao Ar Livre
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/festa_balada.jpg">
+                🪩 Pista de Dança
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/mesa_doces.jpg">
+                🎂 Mesa de Doces
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="stage-dark">
+                🌙 Palco Noturno
+              </button>
+            </div>
+          </div>
+
           <!-- Controls -->
-          <div class="simulator-controls">
+          <div class="simulator-controls" style="margin-top: 14px;">
             <div class="input-group">
               <label for="ledTextInput">Digite sua palavra ou iniciais (até 10 letras):</label>
               <input type="text" id="ledTextInput" class="input-field" value="#15" maxlength="10" placeholder="Ex: #15, LOVE, G & V, MARIA...">
@@ -181,23 +214,23 @@
               <button type="button" class="preset-chip" data-value="XV">XV</button>
             </div>
 
-            <div class="led-feature-notice">
-              <div class="notice-icon">❄️</div>
-              <div class="notice-text">
-                <strong>LED Branco Frio Exclusivo (Luz Fria):</strong> Tonalidade moderna de alto brilho que valoriza vestidos de gala, trajes dos noivos e fotos profissionais sem distorção amarelada.
+            <!-- Proportion / Distance Scale Slider -->
+            <div class="sim-scale-control">
+              <div class="scale-label-row">
+                <label for="simScaleSlider">Proporção (1,20m):</label>
+                <span id="scaleValueDisplay">Padrão 1,20m</span>
               </div>
+              <input type="range" id="simScaleSlider" min="55" max="145" value="100" class="sim-range-input" aria-label="Ajustar proporção das letras">
             </div>
 
-            <div class="color-switcher">
-              <span style="font-size: 0.85rem; color: var(--color-gold-200); font-weight: 500;">Iluminação Oficial:</span>
-              <button type="button" class="glow-btn active" data-glow="glow-cold-white" style="cursor: default;">
-                <span class="color-dot white"></span> Luz Fria Contínua
+            <div class="sim-action-buttons">
+              <button type="button" class="btn btn-primary" id="btnApplyLedToQuote">
+                Quero Essas Letras no Meu Evento! 📲
+              </button>
+              <button type="button" class="btn-save-sim" id="btnSaveSimulation">
+                <span>📸 Salvar Foto Simulada</span>
               </button>
             </div>
-
-            <button type="button" class="btn btn-primary" id="btnApplyLedToQuote" style="margin-top: 10px;">
-              Quero Essas Letras no Meu Evento! 📲
-            </button>
           </div>
         </div>
 
@@ -851,6 +884,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=4"></script>
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>
