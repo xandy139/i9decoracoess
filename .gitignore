@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing & Logs
+*.log
+.system_generated/
+scratch/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
