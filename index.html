@@ -25,14 +25,14 @@
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="top-bar-left">
-        <span class="top-bar-item">✨ <strong>i9 Decorações</strong> | Os Maiores Letreiros de LED de Londrina e Região (1,20m)</span>
-        <span class="top-bar-item">📍 Atendimento em Londrina, Cambé, Ibiporã, Rolândia e Região</span>
+        <span class="top-bar-item">✨ Os Maiores Letreiros de LED de Londrina e Região (1,20m)</span>
+        <span class="top-bar-item top-bar-loc-hide-mobile">📍 Atendimento em Londrina, Cambé, Ibiporã e Região</span>
       </div>
       <div class="top-bar-right">
-        <a href="https://api.whatsapp.com/send?phone=5543988080315&text=Ol%C3%A1%2C%20i9%20Decora%C3%A7%C3%B5es!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">
-          💬 WhatsApp: <strong>(43) 98808-0315</strong>
+        <a href="https://api.whatsapp.com/send?phone=5543988080315&text=Ol%C3%A1%2C%20i9%20Decora%C3%A7%C3%B5es!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" class="top-bar-wa-link">
+          💬 WhatsApp Oficial: <strong>(43) 98808-0315</strong>
         </a>
-        <a href="https://www.instagram.com/i9decoracoess/" target="_blank" rel="noopener noreferrer" style="margin-left: 14px;">
+        <a href="https://www.instagram.com/i9decoracoess/" target="_blank" rel="noopener noreferrer" class="top-bar-insta-hide-mobile">
           📸 <strong>@i9decoracoess</strong>
         </a>
       </div>
@@ -42,7 +42,7 @@
   <!-- Header Navigation -->
   <header class="header">
     <div class="container navbar">
-      <a href="#" class="brand-logo" title="i9 Decorações">
+      <a href="#inicio" class="brand-logo" title="i9 Decorações">
         <img src="assets/images/logo.png" alt="Logo i9 Decorações" id="mainBrandLogo">
         <div class="brand-text">
           <span class="brand-name">i9 DECORAÇÕES</span>
@@ -50,7 +50,7 @@
         </div>
       </a>
 
-      <ul class="nav-links">
+      <ul class="nav-links" id="mainNavLinks">
         <li><a href="#inicio" class="nav-link active">Início</a></li>
         <li><a href="#letras-led" class="nav-link">Letras de LED (1,20m)</a></li>
         <li><a href="#servicos" class="nav-link">Casamentos & Serviços</a></li>
@@ -61,7 +61,7 @@
 
       <div class="nav-actions">
         <a href="#orcamento" class="btn btn-primary btn-sm">Solicitar Orçamento</a>
-        <button class="menu-toggle" aria-label="Abrir Menu">
+        <button class="menu-toggle" id="menuToggleBtn" aria-label="Abrir Menu">
           <span></span>
           <span></span>
           <span></span>
@@ -84,6 +84,16 @@
         <strong>maiores letreiros de LED de Londrina e região: 1,20m de altura</strong>, com acabamento impecável e 
         iluminação em <strong>luz fria</strong> que garante fotos cinematográficas.
       </p>
+
+      <!-- Real Photo Showcase Card (Featured on mobile so the bride, groom and LOVE letters are never cut off) -->
+      <div class="hero-real-showcase-card">
+        <div class="hero-photo-frame">
+          <img src="assets/images/real/casamento_love_real.jpg" alt="Casamento Real com Noivos e Letreiro LOVE 1,20m de Luz Fria - i9 Decorações" class="hero-photo-img">
+          <div class="hero-photo-badge">
+            <span>✨ Registro Real: Noivos & Letreiro LOVE 1,20m (Luz Fria)</span>
+          </div>
+        </div>
+      </div>
 
       <div class="hero-ctas">
         <a href="#orcamento" class="btn btn-primary">

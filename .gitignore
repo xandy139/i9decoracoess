@@ -14,6 +14,6 @@ Thumbs.db
 desktop.ini
 *.zip
 
-# Environment
-.env
-.env.local
+# Backups
+backup_pre_mobile_fix/
+
