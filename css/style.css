@@ -1097,26 +1097,40 @@ section {
   box-shadow: 0 0 12px rgba(216, 175, 79, 0.25);
 }
 
-.backdrop-upload-btn {
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(14, 165, 233, 0.28));
-  border: 1px solid #38BDF8;
-  color: #E0F2FE;
+.stage-upload-corner-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 20;
+  background: rgba(12, 14, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 175, 79, 0.4);
+  color: var(--color-gold-200);
   font-size: 0.78rem;
   font-weight: 600;
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.backdrop-upload-btn:hover {
-  background: rgba(56, 189, 248, 0.35);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+.stage-upload-corner-btn:hover {
+  background: rgba(216, 175, 79, 0.22);
+  border-color: var(--color-gold-300);
+  color: #FFF;
   transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(216, 175, 79, 0.35);
+}
+
+.stage-upload-corner-btn:active {
+  transform: scale(0.96);
 }
 
 /* Scale / Proportion Slider */
@@ -2534,12 +2548,18 @@ select.form-control option {
     padding: 3px 10px;
     top: 8px;
   }
+  .stage-upload-corner-btn {
+    top: 8px;
+    right: 8px;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
   .backdrop-options {
     gap: 6px;
   }
-  .backdrop-btn, .backdrop-upload-btn {
-    font-size: 0.72rem;
-    padding: 5px 10px;
+  .backdrop-btn {
+    font-size: 0.74rem;
+    padding: 6px 12px;
   }
   .sim-scale-control {
     padding: 8px 10px;

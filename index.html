@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png?v=3">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=16">
+  <link rel="stylesheet" href="css/style.css?v=17">
 </head>
 <body>
 
@@ -128,7 +128,7 @@
         <!-- Interactive Simulator Card -->
         <div class="led-simulator-card">
           <div class="simulator-header">
-            <h3>Veja o Letreiro de 1,20m no Seu Evento 📸</h3>
+            <h3>Veja o Letreiro de 1,20m no Seu Evento</h3>
             <p>Escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> pelo ambiente:</p>
           </div>
 
@@ -144,13 +144,6 @@
               <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Entrada_salao.jpg">
                 🏛️ Entrada do Salão
               </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Mesa_de_doces.jpg">
-                🎂 Mesa de Doces
-              </button>
-              <label class="backdrop-upload-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
-                <span>📷 Minha Foto</span>
-                <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
-              </label>
             </div>
           </div>
 
@@ -158,6 +151,13 @@
           <div class="virtual-stage" id="virtualStage">
             <img src="assets/images/ExemploSimulador/Casamento.jpg" alt="Cenário Casamento" class="stage-bg-image" id="simVenueBg">
             <div class="stage-overlay-vignette"></div>
+
+            <!-- Botão Minha Foto no canto superior da imagem -->
+            <label class="stage-upload-corner-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
+              <span>📷 Minha Foto</span>
+              <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
+            </label>
+
             <div class="stage-drag-hint" id="stageDragHint">
               <span>✋ Toque e arraste as letras pelo salão</span>
             </div>
@@ -841,6 +841,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=16"></script>
+  <script src="js/main.js?v=17"></script>
 </body>
 </html>
