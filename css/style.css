@@ -501,44 +501,52 @@ button, input, select, textarea {
 .hero-led-height {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  position: relative;
+  padding: 4px 10px;
+}
+
+.hero-led-height::before {
+  content: '';
+  position: absolute;
+  inset: -10px -20px;
+  background: radial-gradient(ellipse at center, rgba(216, 175, 79, 0.35) 0%, rgba(255, 255, 255, 0.08) 40%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-led-number {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 800;
   line-height: 1;
   color: #FFFFFF;
-  text-shadow: 0 0 14px rgba(255, 255, 255, 0.85), 0 0 28px rgba(186, 230, 253, 0.5);
-  letter-spacing: -0.5px;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.95),
+    0 0 25px rgba(255, 255, 255, 0.8),
+    0 0 50px rgba(216, 175, 79, 0.7),
+    0 0 80px rgba(216, 175, 79, 0.4);
+  letter-spacing: -1px;
+  display: inline-flex;
+  align-items: baseline;
 }
 
 .hero-led-number small {
-  font-size: 1.35rem;
+  font-size: 1.9rem;
+  font-family: var(--font-serif);
   color: var(--color-gold-300);
-  font-family: var(--font-accent);
-  font-weight: 600;
-  margin-left: 1px;
-}
-
-.hero-led-pill {
-  font-size: 0.65rem;
   font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--color-gold-300);
-  background: rgba(216, 175, 79, 0.12);
-  border: 1px solid rgba(216, 175, 79, 0.3);
-  border-radius: 20px;
-  padding: 3px 8px;
-  white-space: nowrap;
+  margin-left: 2px;
+  text-shadow: 0 0 18px rgba(216, 175, 79, 0.9);
 }
 
 .hero-showcase-divider {
   width: 1px;
-  height: 38px;
-  background: linear-gradient(180deg, transparent, rgba(216, 175, 79, 0.45), transparent);
+  height: 54px;
+  background: linear-gradient(180deg, transparent, rgba(216, 175, 79, 0.55), transparent);
 }
 
 .marquee-info {
@@ -2339,6 +2347,12 @@ select.form-control option {
   .hero-led-height {
     justify-content: center;
   }
+  .hero-led-number {
+    font-size: 3rem;
+  }
+  .hero-led-number small {
+    font-size: 1.65rem;
+  }
   .marquee-info {
     text-align: center;
   }
@@ -2859,7 +2873,10 @@ select.form-control option {
     gap: 8px;
   }
   .hero-led-number {
-    font-size: 1.85rem;
+    font-size: 2.7rem;
+  }
+  .hero-led-number small {
+    font-size: 1.5rem;
   }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
