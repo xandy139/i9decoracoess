@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png?v=3">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=9">
+  <link rel="stylesheet" href="css/style.css?v=10">
 </head>
 <body>
 
@@ -153,7 +153,7 @@
         <div class="led-simulator-card">
           <div class="simulator-header">
             <h3>Veja o Letreiro de 1,20m no Seu Evento 📸</h3>
-            <p>Carregue uma foto do seu espaço ou escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> para ver exatamente como ficará na sua festa:</p>
+            <p>Carregue uma foto do seu espaço ou escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> para ter uma prévia ilustrativa de como o letreiro pode compor o seu ambiente:</p>
           </div>
 
           <!-- Live Visual Stage with Photo Backdrop and Draggable Letters -->
@@ -197,19 +197,18 @@
           <div class="simulator-controls" style="margin-top: 14px;">
             <div class="input-group">
               <label for="ledTextInput">Digite sua palavra ou iniciais (até 12 letras):</label>
-              <input type="text" id="ledTextInput" class="input-field" value="#15" maxlength="12" placeholder="Ex: #15, LOVE, 15 ❤️, G & V, MARIA...">
+              <input type="text" id="ledTextInput" class="input-field" value="LOVE" maxlength="12" placeholder="Ex: LOVE, G & V, CASAL, MARIA...">
             </div>
 
             <div class="quick-presets">
               <span>Sugestões rápidas:</span>
-              <button type="button" class="preset-chip active" data-value="#15">#15</button>
-              <button type="button" class="preset-chip" data-value="15 ❤️">15 ❤️</button>
-              <button type="button" class="preset-chip" data-value="LOVE">LOVE</button>
+              <button type="button" class="preset-chip active" data-value="LOVE">LOVE</button>
               <button type="button" class="preset-chip" data-value="G & V">G & V</button>
+              <button type="button" class="preset-chip" data-value="CASAL">CASAL</button>
               <button type="button" class="preset-chip" data-value="MARIA">MARIA</button>
               <button type="button" class="preset-chip" data-value="ANA JULIA">ANA JULIA</button>
               <button type="button" class="preset-chip" data-value="E & L">E & L</button>
-              <button type="button" class="preset-chip" data-value="XV">XV</button>
+              <button type="button" class="preset-chip" data-value="BODAS">BODAS</button>
             </div>
 
             <!-- Proportion / Distance Scale Slider -->
@@ -228,6 +227,12 @@
               <button type="button" class="btn-save-sim" id="btnSaveSimulation">
                 <span>📸 Salvar Foto Simulada</span>
               </button>
+            </div>
+
+            <!-- Disclaimer Notice: Purely Illustrative Simulation -->
+            <div class="sim-disclaimer">
+              <span class="sim-disclaimer-icon">💡</span>
+              <p><strong>Aviso importante:</strong> Esta ferramenta é uma <em>simulação visual ilustrativa</em> para você ter uma prévia criativa de como as letras compõem o espaço. A disposição física definitiva, proporções reais e o posicionamento no dia do seu evento são alinhados e ajustados tecnicamente no local pela nossa equipe de montagem conforme o layout e as dimensões do salão.</p>
             </div>
           </div>
         </div>
@@ -618,7 +623,7 @@
 
               <div class="form-group">
                 <label for="quoteLedText">Letras de LED Desejadas (1,20m - opcional):</label>
-                <input type="text" id="quoteLedText" class="form-control" placeholder="Ex: LOVE, M & J, #15, MARIA...">
+                <input type="text" id="quoteLedText" class="form-control" placeholder="Ex: LOVE, M & J, CASAL, MARIA...">
               </div>
             </div>
 
@@ -882,6 +887,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

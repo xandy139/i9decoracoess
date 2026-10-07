@@ -84,9 +84,7 @@ function initLedSimulator() {
 
   const MARQUEE_IMAGE_MAP = {
     '#': 'hash.png',
-    '&': 'amp.png',
-    '❤️': 'heart.png',
-    '❤': 'heart.png'
+    '&': 'amp.png'
   };
 
   function getMarqueeAsset(char) {
@@ -100,7 +98,9 @@ function initLedSimulator() {
 
   function renderLetters(text) {
     lettersContainer.innerHTML = '';
-    const cleanText = text.trim().toUpperCase() || 'LOVE';
+    // Strip heart emojis and unsupported symbols
+    const withoutHearts = (text || '').replace(/[\u2764\uFE0F\u2665\uD83D\uDC96\uD83D\uDC95\uD83D\uDC97\uD83D\uDC9E\uD83D\uDC93\uD83D\uDC9F\uD83D\uDC9B\uD83D\uDC9A\uD83D\uDC99\uD83D\uDC9C\uD83E\uDE77]/gu, '');
+    const cleanText = withoutHearts.trim().toUpperCase() || 'LOVE';
     const stripped = cleanText.replace(/\uFE0F/g, '');
     const chars = Array.from(stripped).slice(0, 12);
 
@@ -426,7 +426,7 @@ function initLedSimulator() {
   }
 
   // Initial render
-  renderLetters(input.value || '#15');
+  renderLetters(input.value || 'LOVE');
 }
 
 /* ==========================================================================

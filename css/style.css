@@ -1190,6 +1190,44 @@ section {
   color: #FFF;
 }
 
+/* Simulator Disclaimer / Illustrative Notice */
+.sim-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(216, 175, 79, 0.08);
+  border: 1px solid rgba(216, 175, 79, 0.22);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #CBD5E1;
+}
+
+.sim-disclaimer-icon {
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.sim-disclaimer p {
+  margin: 0;
+  color: #CBD5E1;
+}
+
+.sim-disclaimer strong {
+  color: var(--color-gold-300);
+  font-weight: 600;
+}
+
+.sim-disclaimer em {
+  color: #FFF;
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: rgba(216, 175, 79, 0.5);
+}
+
 
 /* Right Column: LED Features & Benefits */
 .led-features {
