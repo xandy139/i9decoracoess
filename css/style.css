@@ -1592,30 +1592,75 @@ section {
     #0E1017;
 }
 
-.budget-wrapper {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
-  margin-top: 45px;
-  max-width: 100%;
+.budget-unified-card {
+  max-width: 960px;
+  margin: 40px auto 0;
+  background: #111B21;
+  border: 1px solid rgba(37, 211, 102, 0.32);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), 0 0 30px rgba(37, 211, 102, 0.08);
+  box-sizing: border-box;
 }
 
-.budget-form-card {
-  background: #151722;
-  border: 1px solid var(--border-gold-subtle);
-  border-radius: var(--radius-lg);
-  padding: 36px;
-  box-shadow: var(--shadow-card);
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
+.whatsapp-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+}
+
+.wa-badge-pill {
+  margin-left: auto;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  color: #25D366;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+}
+
+.budget-card-body {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.budget-col-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gold-300);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.budget-inputs-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.budget-preview-col {
+  display: flex;
+  flex-direction: column;
+  background: rgba(13, 20, 26, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 22px;
 }
 
 .form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-bottom: 18px;
+  gap: 16px;
+  margin-bottom: 0;
   min-width: 0;
   max-width: 100%;
 }
@@ -1685,69 +1730,6 @@ select.form-control option {
   color: #FFF;
 }
 
-/* Checkbox Pills Group */
-.checkbox-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.checkbox-pill-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  background: #0D0E13;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  color: #D1D5DB;
-  cursor: pointer;
-  user-select: none;
-  transition: all var(--transition-fast);
-}
-
-.checkbox-pill-label:hover {
-  border-color: rgba(216, 175, 79, 0.4);
-}
-
-.checkbox-pill-label input[type="checkbox"] {
-  accent-color: var(--color-gold-400);
-  width: 15px;
-  height: 15px;
-}
-
-.checkbox-pill-label.checked {
-  background: rgba(216, 175, 79, 0.18);
-  border-color: var(--color-gold-400);
-  color: #FFF;
-}
-
-/* WhatsApp Live Preview Box */
-.whatsapp-preview-card {
-  background: #111B21;
-  border: 1px solid rgba(37, 211, 102, 0.3);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: var(--shadow-card);
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.whatsapp-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 18px;
-}
-
 .wa-avatar {
   width: 44px;
   height: 44px;
@@ -1786,9 +1768,9 @@ select.form-control option {
   line-height: 1.6;
   white-space: pre-wrap;
   word-break: break-word;
-  flex: 1;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   border-left: 3px solid #25D366;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .btn-whatsapp-send {
@@ -1796,7 +1778,7 @@ select.form-control option {
   color: #0B141A;
   font-weight: 700;
   width: 100%;
-  padding: 14px;
+  padding: 14px 20px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
@@ -2188,7 +2170,7 @@ select.form-control option {
   .services-grid, .gallery-grid, .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .led-showcase-grid, .budget-wrapper {
+  .led-showcase-grid, .budget-card-body {
     grid-template-columns: 1fr;
   }
   .process-steps-grid {
@@ -2852,18 +2834,17 @@ select.form-control option {
   }
 
   /* Budget & WhatsApp Form */
-  .budget-wrapper {
-    gap: 24px;
-    margin-top: 30px;
+  .budget-unified-card {
+    padding: 24px 18px;
+    margin-top: 25px;
   }
-  .budget-form-card {
-    padding: 24px 16px;
-    border-radius: var(--radius-md);
+  .budget-card-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .form-grid-2 {
     grid-template-columns: 1fr;
     gap: 14px;
-    margin-bottom: 14px;
   }
   .form-group {
     margin-bottom: 14px;
@@ -2872,18 +2853,8 @@ select.form-control option {
     font-size: 16px; /* Prevents auto-zoom on iOS Safari */
     padding: 11px 14px;
   }
-  .checkbox-pills {
-    gap: 8px;
-  }
-  .checkbox-pill-label {
-    padding: 6px 12px;
-    font-size: 0.78rem;
-    max-width: 100%;
-    line-height: 1.3;
-  }
-  .whatsapp-preview-card {
-    padding: 22px 16px;
-    border-radius: var(--radius-md);
+  .budget-preview-col {
+    padding: 18px 14px;
   }
   .btn-whatsapp-send {
     font-size: 0.95rem;
@@ -3076,7 +3047,7 @@ select.form-control option {
   .spotlight-img-box {
     height: 230px;
   }
-  .budget-form-card, .whatsapp-preview-card {
+  .budget-unified-card {
     padding: 18px 12px;
   }
   .wa-bubble {

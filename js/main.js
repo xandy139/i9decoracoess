@@ -306,22 +306,13 @@ function initLedSimulator() {
   // Apply to WhatsApp quote form button
   if (applyToFormBtn) {
     applyToFormBtn.addEventListener('click', () => {
-      const formInput = document.getElementById('quoteLedText');
-      const ledCheckbox = document.getElementById('chkLed');
-      if (formInput) {
-        formInput.value = input.value.trim().toUpperCase() || 'LOVE';
-      }
-      if (ledCheckbox) {
-        ledCheckbox.checked = true;
-        const parent = ledCheckbox.closest('.checkbox-pill-label');
-        if (parent) parent.classList.add('checked');
-      }
-      
-      updateWhatsAppPreview();
-
       const budgetSection = document.getElementById('orcamento');
       if (budgetSection) {
         budgetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+      const nameInput = document.getElementById('quoteName');
+      if (nameInput) {
+        setTimeout(() => nameInput.focus(), 450);
       }
     });
   }
@@ -580,30 +571,14 @@ function initBudgetCalculator() {
   const typeSelect = document.getElementById('quoteEventType');
   const dateInput = document.getElementById('quoteDate');
   const cityInput = document.getElementById('quoteCity');
-  const guestsInput = document.getElementById('quoteGuests');
-  const ledTextInput = document.getElementById('quoteLedText');
-  const notesInput = document.getElementById('quoteNotes');
-  const checkboxes = document.querySelectorAll('.quote-service-chk');
   const waPreviewBubble = document.getElementById('waPreviewBubble');
   const sendWaBtn = document.getElementById('btnSendWhatsApp');
 
   // Contact WhatsApp of i9 Decorações
   const WHATSAPP_PHONE = '5543988080315';
 
-  // Sync checkboxes styling
-  checkboxes.forEach(chk => {
-    chk.addEventListener('change', () => {
-      const parent = chk.closest('.checkbox-pill-label');
-      if (parent) {
-        if (chk.checked) parent.classList.add('checked');
-        else parent.classList.remove('checked');
-      }
-      updateWhatsAppPreview();
-    });
-  });
-
   // Watch inputs
-  [nameInput, typeSelect, dateInput, cityInput, guestsInput, ledTextInput, notesInput].forEach(elem => {
+  [nameInput, typeSelect, dateInput, cityInput].forEach(elem => {
     if (elem) {
       elem.addEventListener('input', updateWhatsAppPreview);
       elem.addEventListener('change', updateWhatsAppPreview);
@@ -614,42 +589,14 @@ function initBudgetCalculator() {
     const name = nameInput ? nameInput.value.trim() : '';
     const eventType = typeSelect ? typeSelect.value : 'Casamento';
     const date = dateInput && dateInput.value ? formatDate(dateInput.value) : '[Data a definir]';
-    const city = cityInput && cityInput.value.trim() ? cityInput.value.trim() : '[Cidade/Local]';
-    const guests = guestsInput && guestsInput.value ? guestsInput.value : 'A definir';
-    const ledText = ledTextInput && ledTextInput.value.trim() ? ledTextInput.value.trim().toUpperCase() : '';
-    const notes = notesInput && notesInput.value.trim() ? notesInput.value.trim() : '';
-
-    const selectedServices = [];
-    checkboxes.forEach(chk => {
-      if (chk.checked) {
-        selectedServices.push(chk.value);
-      }
-    });
+    const city = cityInput && cityInput.value.trim() ? cityInput.value.trim() : '[Cidade / Local]';
 
     let msg = `Olá, *i9 Decorações*! 🥂✨\n`;
     msg += `Gostaria de solicitar um orçamento para o meu evento:\n\n`;
     msg += `👤 *Nome:* ${name || '[Meu Nome]'}\n`;
     msg += `💍 *Tipo de Evento:* ${eventType}\n`;
     msg += `📅 *Data Prevista:* ${date}\n`;
-    msg += `📍 *Local / Cidade:* ${city}\n`;
-    msg += `👥 *Estimativa de Convidados:* ${guests}\n\n`;
-
-    if (selectedServices.length > 0) {
-      msg += `✨ *Serviços de Interesse:*\n`;
-      selectedServices.forEach(s => {
-        msg += `• ${s}\n`;
-      });
-      msg += `\n`;
-    }
-
-    if (ledText) {
-      msg += `💡 *Letras de LED (Luz Fria):* "${ledText}"\n\n`;
-    }
-
-    if (notes) {
-      msg += `📝 *Observações:* ${notes}\n\n`;
-    }
-
+    msg += `📍 *Local / Cidade:* ${city}\n\n`;
     msg += `Vocês têm disponibilidade para essa data? Aguardo o retorno para conversarmos! Muito obrigado(a).`;
 
     if (waPreviewBubble) {

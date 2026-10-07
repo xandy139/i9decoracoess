@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png?v=3">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=21">
+  <link rel="stylesheet" href="css/style.css?v=22">
 </head>
 <body>
 
@@ -532,118 +532,66 @@
         </p>
       </div>
 
-      <div class="budget-wrapper">
-        <!-- Form Side -->
-        <div class="budget-form-card">
-          <form id="quoteBudgetForm">
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="quoteName">Seu Nome Completo:</label>
-                <input type="text" id="quoteName" class="form-control" placeholder="Ex: Mariana Silva" required>
-              </div>
+      <!-- Unified WhatsApp & Budget Card -->
+      <div class="budget-unified-card">
+        <div class="whatsapp-header">
+          <div class="wa-avatar">
+            <img src="assets/images/logo.png" alt="i9 Decorações WhatsApp">
+          </div>
+          <div class="wa-info">
+            <h4>i9 Decorações</h4>
+            <span>● Londrina & Região Metropolitana</span>
+          </div>
+          <div class="wa-badge-pill">⚡ Resposta Rápida</div>
+        </div>
 
-              <div class="form-group">
-                <label for="quoteEventType">Tipo de Evento:</label>
-                <select id="quoteEventType" class="form-control">
-                  <option value="Casamento">💍 Casamento Completo</option>
-                  <option value="Mini Wedding">🌿 Mini Wedding / Noivado</option>
-                  <option value="Festa de 15 Anos">👑 Festa de 15 Anos (Debutante)</option>
-                  <option value="Locação de Letras de LED">💡 Apenas Locação de Letras de LED</option>
-                  <option value="Bodas / Renovação de Votos">🥂 Bodas / Aniversário de Casamento</option>
-                  <option value="Outro Evento Especial">✨ Outro Evento Social / Corporativo</option>
-                </select>
-              </div>
+        <div class="budget-card-body">
+          <!-- Coluna 1: Formulário Simplificado (Apenas Nome, Tipo de Evento, Data e Local) -->
+          <div class="budget-inputs-col">
+            <h4 class="budget-col-title">📋 Dados do Seu Evento</h4>
+
+            <div class="form-group">
+              <label for="quoteName">Seu Nome:</label>
+              <input type="text" id="quoteName" class="form-control" placeholder="Ex: Mariana Silva" required>
+            </div>
+
+            <div class="form-group">
+              <label for="quoteEventType">Tipo de Evento:</label>
+              <select id="quoteEventType" class="form-control">
+                <option value="Casamento">💍 Casamento Completo</option>
+                <option value="Mini Wedding">🌿 Mini Wedding / Noivado</option>
+                <option value="Festa de 15 Anos">👑 Festa de 15 Anos (Debutante)</option>
+                <option value="Locação de Letras de LED">💡 Locação de Letras de LED</option>
+                <option value="Bodas / Renovação de Votos">🥂 Bodas / Aniversário</option>
+                <option value="Outro Evento Especial">✨ Outro Evento Especial</option>
+              </select>
             </div>
 
             <div class="form-grid-2">
               <div class="form-group">
-                <label for="quoteDate">Data Prevista do Evento:</label>
+                <label for="quoteDate">Data Prevista:</label>
                 <input type="date" id="quoteDate" class="form-control">
               </div>
 
               <div class="form-group">
-                <label for="quoteCity">Cidade / Local do Evento:</label>
-                <input type="text" id="quoteCity" class="form-control" placeholder="Ex: Londrina (ou Cambé, Ibiporã, Rolândia...)">
+                <label for="quoteCity">Local / Cidade:</label>
+                <input type="text" id="quoteCity" class="form-control" placeholder="Ex: Londrina (ou salão)">
               </div>
-            </div>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="quoteGuests">Nº Estimado de Convidados:</label>
-                <input type="text" id="quoteGuests" class="form-control" placeholder="Ex: 120 convidados">
-              </div>
-
-              <div class="form-group">
-                <label for="quoteLedText">Letras de LED Desejadas (opcional):</label>
-                <input type="text" id="quoteLedText" class="form-control" placeholder="Ex: LOVE, M & J, CASAL, MARIA...">
-              </div>
-            </div>
-
-            <!-- Checkbox Services -->
-            <div class="form-group">
-              <label>Itens e Serviços de Interesse:</label>
-              <div class="checkbox-pills">
-                <label class="checkbox-pill-label checked">
-                  <input type="checkbox" class="quote-service-chk" value="Decoração Completa do Espaço" checked>
-                  Decoração Completa
-                </label>
-                <label class="checkbox-pill-label checked" id="pillLed">
-                  <input type="checkbox" class="quote-service-chk" id="chkLed" value="Letras de LED Gigantes (Luz Fria)" checked>
-                  Letras de LED Gigantes (Luz Fria)
-                </label>
-                <label class="checkbox-pill-label checked">
-                  <input type="checkbox" class="quote-service-chk" value="Portais de Coração & Recepção">
-                  Portais de Coração Iluminados
-                </label>
-                <label class="checkbox-pill-label checked">
-                  <input type="checkbox" class="quote-service-chk" value="Mesa de Bolo e Doces" checked>
-                  Mesa de Bolo e Doces
-                </label>
-                <label class="checkbox-pill-label">
-                  <input type="checkbox" class="quote-service-chk" value="Cerimônia ao Ar Livre">
-                  Cerimônia ao Ar Livre
-                </label>
-                <label class="checkbox-pill-label">
-                  <input type="checkbox" class="quote-service-chk" value="Iluminação Cênica">
-                  Iluminação Cênica
-                </label>
-                <label class="checkbox-pill-label">
-                  <input type="checkbox" class="quote-service-chk" value="Lounges & Poltronas">
-                  Lounges & Mobiliário
-                </label>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="quoteNotes">Observações ou Sonhos Especiais:</label>
-              <textarea id="quoteNotes" class="form-control" rows="2" placeholder="Conte-nos detalhes do local, horário ou dúvidas sobre a decoração..."></textarea>
-            </div>
-          </form>
-        </div>
-
-        <!-- WhatsApp Preview Side -->
-        <div class="whatsapp-preview-card">
-          <div class="whatsapp-header">
-            <div class="wa-avatar">
-              <img src="assets/images/logo.png" alt="i9 Decorações WhatsApp">
-            </div>
-            <div class="wa-info">
-              <h4>i9 Decorações</h4>
-              <span>● Londrina & Região Metropolitana</span>
             </div>
           </div>
 
-          <div style="font-size: 0.8rem; color: #8696A0; margin-bottom: 8px;">
-            Prévia da mensagem estruturada para envio:
-          </div>
+          <!-- Coluna 2: Prévia em Tempo Real da Mensagem + Envio -->
+          <div class="budget-preview-col">
+            <h4 class="budget-col-title">💬 Mensagem no WhatsApp</h4>
+            
+            <div class="wa-bubble" id="waPreviewBubble">
+              <!-- Dynamically populated by JS -->
+            </div>
 
-          <div class="wa-bubble" id="waPreviewBubble">
-            <!-- Dynamically populated by JS -->
+            <button type="button" class="btn-whatsapp-send" id="btnSendWhatsApp">
+              <span>Enviar Orçamento via WhatsApp</span> 📲
+            </button>
           </div>
-
-          <button type="button" class="btn-whatsapp-send" id="btnSendWhatsApp">
-            <span>Enviar Orçamento via WhatsApp</span> 📲
-          </button>
         </div>
       </div>
     </div>
