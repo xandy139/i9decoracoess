@@ -643,7 +643,7 @@ function initBudgetCalculator() {
     }
 
     if (ledText) {
-      msg += `💡 *Letras de LED (1,20m - Luz Fria):* "${ledText}"\n\n`;
+      msg += `💡 *Letras de LED (Luz Fria):* "${ledText}"\n\n`;
     }
 
     if (notes) {
