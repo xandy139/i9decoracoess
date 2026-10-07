@@ -478,19 +478,19 @@ button, input, select, textarea {
 
 /* Floating LED Marquee badge in hero */
 .hero-marquee-showcase {
-  background: rgba(19, 21, 27, 0.75);
-  backdrop-filter: blur(14px);
-  border: 1px solid var(--border-gold-subtle);
+  background: rgba(18, 20, 27, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(216, 175, 79, 0.32);
   border-radius: var(--radius-lg);
-  padding: 18px 24px;
+  padding: 14px 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.65), 0 0 25px rgba(216, 175, 79, 0.08);
   animation: floatSlow 6s ease-in-out infinite;
   max-width: 100%;
-  flex-wrap: wrap;
 }
 
 @keyframes floatSlow {
@@ -498,27 +498,47 @@ button, input, select, textarea {
   50% { transform: translateY(-8px); }
 }
 
-.marquee-mini-letters {
-  display: flex;
-  gap: 10px;
+.hero-led-height {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.mini-letter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 48px;
-  background: #FFFFFF;
-  border: 2px solid #E5E7EB;
-  border-radius: 8px;
-  font-family: var(--font-accent);
-  font-size: 1.4rem;
+.hero-led-number {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
   font-weight: 700;
-  color: #111827;
-  text-shadow: 0 0 10px #FFFFFF, 0 0 20px rgba(186, 230, 253, 0.9);
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8), 0 0 18px rgba(255, 255, 255, 0.7);
-  position: relative;
+  line-height: 1;
+  color: #FFFFFF;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.85), 0 0 28px rgba(186, 230, 253, 0.5);
+  letter-spacing: -0.5px;
+}
+
+.hero-led-number small {
+  font-size: 1.35rem;
+  color: var(--color-gold-300);
+  font-family: var(--font-accent);
+  font-weight: 600;
+  margin-left: 1px;
+}
+
+.hero-led-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-gold-300);
+  background: rgba(216, 175, 79, 0.12);
+  border: 1px solid rgba(216, 175, 79, 0.3);
+  border-radius: 20px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.hero-showcase-divider {
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(180deg, transparent, rgba(216, 175, 79, 0.45), transparent);
 }
 
 .marquee-info {
@@ -526,7 +546,7 @@ button, input, select, textarea {
 }
 
 .marquee-info h4 {
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   color: #FFF;
   font-weight: 600;
   margin-bottom: 2px;
@@ -535,6 +555,7 @@ button, input, select, textarea {
 .marquee-info p {
   font-size: 0.8rem;
   color: var(--color-gold-300);
+  margin: 0;
 }
 
 /* --- Highlights Stats Bar --- */
@@ -2306,20 +2327,17 @@ select.form-control option {
   }
   .hero-marquee-showcase {
     flex-direction: column;
-    gap: 14px;
-    padding: 18px 20px;
+    gap: 10px;
+    padding: 16px 20px;
     width: 100%;
     max-width: 340px;
     margin: 0 auto;
   }
-  .marquee-mini-letters {
-    gap: 8px;
-    justify-content: center;
+  .hero-showcase-divider {
+    display: none;
   }
-  .mini-letter {
-    width: 38px;
-    height: 42px;
-    font-size: 1.2rem;
+  .hero-led-height {
+    justify-content: center;
   }
   .marquee-info {
     text-align: center;
@@ -2837,16 +2855,11 @@ select.form-control option {
     font-size: 2.1rem;
   }
   .hero-marquee-showcase {
-    padding: 14px 12px;
+    padding: 12px 14px;
+    gap: 8px;
   }
-  .marquee-mini-letters {
-    gap: 5px;
-  }
-  .mini-letter {
-    width: 32px;
-    height: 36px;
-    font-size: 1rem;
-    border-radius: 6px;
+  .hero-led-number {
+    font-size: 1.85rem;
   }
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
