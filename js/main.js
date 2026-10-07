@@ -143,8 +143,18 @@ function initLedSimulator() {
     updateLettersPosition();
   }
 
+  let animFrameId = null;
+
   function updateLettersPosition() {
-    lettersContainer.style.transform = `translate(calc(-50% + ${posX}px), calc(-50% + ${posY}px)) scale(${currentScale})`;
+    lettersContainer.style.transform = `translate3d(calc(-50% + ${posX}px), calc(-50% + ${posY}px), 0) scale(${currentScale})`;
+  }
+
+  function scheduleUpdate() {
+    if (animFrameId) cancelAnimationFrame(animFrameId);
+    animFrameId = requestAnimationFrame(() => {
+      updateLettersPosition();
+      animFrameId = null;
+    });
   }
 
   // --- Drag & Drop Engine (Pointer Events for Touch + Mouse) ---
@@ -178,7 +188,7 @@ function initLedSimulator() {
     posX = Math.max(-halfW, Math.min(halfW, posX));
     posY = Math.max(-halfH, Math.min(halfH, posY));
 
-    updateLettersPosition();
+    scheduleUpdate();
   });
 
   const stopDrag = (e) => {
@@ -201,7 +211,7 @@ function initLedSimulator() {
         else if (currentScale >= 1.25) scaleLabel.innerText = 'Primeiro Plano (Maior)';
         else scaleLabel.innerText = 'Padrão 1,20m';
       }
-      updateLettersPosition();
+      scheduleUpdate();
     });
   }
 
