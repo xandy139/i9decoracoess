@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png?v=3">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=15">
+  <link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body>
 
@@ -152,7 +152,29 @@
         <div class="led-simulator-card">
           <div class="simulator-header">
             <h3>Veja o Letreiro de 1,20m no Seu Evento 📸</h3>
-            <p>Carregue uma foto do seu espaço ou escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> para ter uma prévia ilustrativa de como o letreiro pode compor o seu ambiente:</p>
+            <p>Escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> pelo ambiente:</p>
+          </div>
+
+          <!-- Backdrop Selector Options (Cenários no topo) -->
+          <div class="sim-backdrop-selector">
+            <div class="backdrop-options">
+              <button type="button" class="backdrop-btn active" data-bg="assets/images/ExemploSimulador/Casamento.jpg">
+                💍 Casamento
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Debutante.jpg">
+                👑 Debutante
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Entrada_salao.jpg">
+                🏛️ Entrada do Salão
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Mesa_de_doces.jpg">
+                🎂 Mesa de Doces
+              </button>
+              <label class="backdrop-upload-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
+                <span>📷 Minha Foto</span>
+                <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
+              </label>
+            </div>
           </div>
 
           <!-- Live Visual Stage with Photo Backdrop and Draggable Letters -->
@@ -167,53 +189,17 @@
             </div>
           </div>
 
-          <!-- Backdrop Selector & Custom Photo Upload -->
-          <div class="sim-backdrop-selector">
-            <div class="backdrop-selector-label">
-              <span>📍 Escolha o Cenário de Fundo:</span>
-              <label class="backdrop-upload-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
-                <span>📷 Carregar Minha Foto</span>
-                <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
-              </label>
-            </div>
-            <div class="backdrop-options">
-              <button type="button" class="backdrop-btn active" data-bg="assets/images/ExemploSimulador/Casamento.jpg">
-                💍 Casamento
-              </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Debutante.jpg">
-                👑 Debutante
-              </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Entrada_salao.jpg">
-                🏛️ Entrada do Salão
-              </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Mesa_de_doces.jpg">
-                🎂 Mesa de Doces
-              </button>
-            </div>
-          </div>
-
           <!-- Controls -->
-          <div class="simulator-controls" style="margin-top: 14px;">
+          <div class="simulator-controls">
             <div class="input-group">
               <label for="ledTextInput">Digite sua palavra ou iniciais (até 12 letras):</label>
-              <input type="text" id="ledTextInput" class="input-field" value="LOVE" maxlength="12" placeholder="Ex: LOVE, G & V, CASAL, MARIA...">
+              <input type="text" id="ledTextInput" class="input-field" value="LOVE" maxlength="12" placeholder="Ex: LOVE, G & V, 15 ANOS...">
             </div>
 
-            <div class="quick-presets">
-              <span>Sugestões rápidas:</span>
-              <button type="button" class="preset-chip active" data-value="LOVE">LOVE</button>
-              <button type="button" class="preset-chip" data-value="G & V">G & V</button>
-              <button type="button" class="preset-chip" data-value="CASAL">CASAL</button>
-              <button type="button" class="preset-chip" data-value="MARIA">MARIA</button>
-              <button type="button" class="preset-chip" data-value="ANA JULIA">ANA JULIA</button>
-              <button type="button" class="preset-chip" data-value="E & L">E & L</button>
-              <button type="button" class="preset-chip" data-value="BODAS">BODAS</button>
-            </div>
-
-            <!-- Proportion / Distance Scale Slider -->
+            <!-- Proportion / Distance Scale Slider (Aumentar / Diminuir) -->
             <div class="sim-scale-control">
               <div class="scale-label-row">
-                <label for="simScaleSlider">Proporção (1,20m):</label>
+                <label for="simScaleSlider">Tamanho / Proporção (1,20m):</label>
                 <span id="scaleValueDisplay">Padrão 1,20m</span>
               </div>
               <input type="range" id="simScaleSlider" min="55" max="145" value="100" class="sim-range-input" aria-label="Ajustar proporção das letras">
@@ -878,6 +864,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=15"></script>
+  <script src="js/main.js?v=16"></script>
 </body>
 </html>

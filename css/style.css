@@ -1050,41 +1050,12 @@ section {
   box-shadow: 0 0 0 3px rgba(216, 175, 79, 0.2);
 }
 
-.quick-presets {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.quick-presets span {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.preset-chip {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-full);
-  padding: 4px 12px;
-  font-size: 0.78rem;
-  color: #D1D5DB;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.preset-chip:hover, .preset-chip.active {
-  background: rgba(216, 175, 79, 0.2);
-  border-color: var(--color-gold-400);
-  color: #FFF;
-}
-
-/* Backdrop selector options */
+/* Backdrop selector options (Positioned above stage) */
 .sim-backdrop-selector {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 16px;
+  margin-bottom: 14px;
 }
 
 .backdrop-selector-label {
@@ -2549,6 +2520,9 @@ select.form-control option {
   .simulator-header h3 {
     font-size: 1.35rem;
   }
+  .sim-backdrop-selector {
+    margin-bottom: 10px;
+  }
   .virtual-stage {
     min-height: 220px;
     height: 260px;
@@ -2595,13 +2569,6 @@ select.form-control option {
   .marquee-floor-reflection {
     height: 8px;
     bottom: -4px;
-  }
-  .quick-presets {
-    gap: 6px;
-  }
-  .preset-chip {
-    padding: 4px 10px;
-    font-size: 0.75rem;
   }
   .btn {
     white-space: normal;

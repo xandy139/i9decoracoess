@@ -95,7 +95,6 @@ function initLedSimulator() {
   const stage = document.getElementById('virtualStage');
   const lettersContainer = document.getElementById('stageLettersContainer');
   const input = document.getElementById('ledTextInput');
-  const presetChips = document.querySelectorAll('.preset-chip');
   const applyToFormBtn = document.getElementById('btnApplyLedToQuote');
   const saveSimBtn = document.getElementById('btnSaveSimulation');
   const bgImg = document.getElementById('simVenueBg');
@@ -302,18 +301,6 @@ function initLedSimulator() {
   // Handle typing in input
   input.addEventListener('input', (e) => {
     renderLetters(e.target.value);
-    presetChips.forEach(c => c.classList.remove('active'));
-  });
-
-  // Presets handling
-  presetChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      presetChips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      const val = chip.getAttribute('data-value');
-      input.value = val;
-      renderLetters(val);
-    });
   });
 
   // Apply to WhatsApp quote form button
