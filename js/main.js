@@ -640,10 +640,39 @@ function initBudgetCalculator() {
     return isoStr;
   }
 
-  // Send to WhatsApp
+  // Clear error on input
+  if (nameInput) {
+    nameInput.addEventListener('input', () => {
+      nameInput.classList.remove('input-error');
+      const notice = document.getElementById('formValidationNotice');
+      if (notice) notice.style.display = 'none';
+    });
+  }
+
+  // Send to WhatsApp with friendly validation
   if (sendWaBtn) {
     sendWaBtn.addEventListener('click', (e) => {
       e.preventDefault();
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      if (!name) {
+        if (nameInput) {
+          nameInput.classList.add('input-error');
+          nameInput.focus();
+        }
+        let notice = document.getElementById('formValidationNotice');
+        if (!notice && nameInput) {
+          notice = document.createElement('div');
+          notice.id = 'formValidationNotice';
+          notice.className = 'form-validation-notice';
+          notice.innerHTML = '⚠️ <span>Por favor, digite seu <strong>nome</strong> para personalizarmos seu orçamento.</span>';
+          nameInput.parentElement.insertAdjacentElement('beforebegin', notice);
+        }
+        if (notice) notice.style.display = 'flex';
+        nameInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
       const message = updateWhatsAppPreview();
       const encodedMsg = encodeURIComponent(message);
       
