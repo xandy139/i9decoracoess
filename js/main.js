@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initLedSimulator();
   initPortfolioFilter();
+  initGalleryMobileToggle();
   initLightbox();
   initBudgetCalculator();
   initSmoothScroll();
@@ -27,29 +28,63 @@ function initNavbar() {
     } else {
       header.classList.remove('scrolled');
     }
-  });
+    if (navLinks && navLinks.classList.contains('open') && header) {
+      updateMenuPosition();
+    }
+  }, { passive: true });
+
+  function updateMenuPosition() {
+    if (!header || !navLinks) return;
+    const rect = header.getBoundingClientRect();
+    const topOffset = Math.max(0, Math.round(rect.bottom));
+    navLinks.style.setProperty('--mobile-nav-top', `${topOffset}px`);
+  }
+
+  function openMenu() {
+    updateMenuPosition();
+    navLinks.classList.add('open');
+    menuToggle.classList.add('open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-menu-open');
+  }
+
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    menuToggle.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-menu-open');
+  }
 
   // Mobile menu toggle
   if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isOpen = navLinks.classList.toggle('open');
-      menuToggle.classList.toggle('open', isOpen);
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuToggle.classList.remove('open');
+        closeMenu();
       });
     });
 
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove('open');
-        menuToggle.classList.remove('open');
+      if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        closeMenu();
       }
     });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+        closeMenu();
+      } else if (navLinks.classList.contains('open')) {
+        updateMenuPosition();
+      }
+    }, { passive: true });
   }
 }
 
@@ -430,7 +465,7 @@ function initLedSimulator() {
 }
 
 /* ==========================================================================
-   3. Portfolio Filter
+   3. Portfolio Filter & Mobile Gallery Toggle
    ========================================================================== */
 function initPortfolioFilter() {
   const filterBtns = document.querySelectorAll('.filter-btn');
@@ -447,7 +482,7 @@ function initPortfolioFilter() {
 
       galleryItems.forEach(item => {
         const itemCategory = item.getAttribute('data-category');
-        if (filterValue === 'all' || itemCategory === filterValue) {
+        if (filterValue === 'all' || (itemCategory && itemCategory.includes(filterValue))) {
           item.style.display = 'block';
           setTimeout(() => {
             item.style.opacity = '1';
@@ -463,21 +498,28 @@ function initPortfolioFilter() {
       });
     });
   });
+}
 
-  // Mobile Gallery Toggle (Expand/Collapse to save vertical scroll)
+function initGalleryMobileToggle() {
   const btnToggleGalleryMobile = document.getElementById('btnToggleGalleryMobile');
   const galleryGrid = document.getElementById('galleryGrid');
-  if (btnToggleGalleryMobile && galleryGrid) {
-    btnToggleGalleryMobile.addEventListener('click', () => {
-      const isExpanded = galleryGrid.classList.toggle('gallery-expanded');
-      btnToggleGalleryMobile.innerHTML = isExpanded 
-        ? '▴ Mostrar Menos Fotos' 
-        : '📸 Ver Mais Fotos (+10) ▾';
-      if (!isExpanded) {
-        galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  if (!btnToggleGalleryMobile || !galleryGrid) return;
+
+  btnToggleGalleryMobile.addEventListener('click', (e) => {
+    e.preventDefault();
+    const isExpanded = galleryGrid.classList.toggle('gallery-expanded');
+    btnToggleGalleryMobile.innerHTML = isExpanded 
+      ? '▴ Mostrar Menos Fotos' 
+      : '📸 Ver Mais Fotos (+10) ▾';
+
+    if (!isExpanded) {
+      const gallerySection = document.getElementById('galeria');
+      if (gallerySection) {
+        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
-  }
+    }
+  });
 }
 
 /* ==========================================================================
