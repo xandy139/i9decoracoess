@@ -301,6 +301,9 @@ function initLedSimulator() {
   // Handle typing in input
   input.addEventListener('input', (e) => {
     renderLetters(e.target.value);
+    if (window.updateWhatsAppPreview) {
+      window.updateWhatsAppPreview();
+    }
   });
 
   // Apply to WhatsApp quote form button
@@ -310,9 +313,12 @@ function initLedSimulator() {
       if (budgetSection) {
         budgetSection.scrollIntoView({ behavior: 'smooth' });
       }
+      if (window.updateWhatsAppPreview) {
+        window.updateWhatsAppPreview();
+      }
       const nameInput = document.getElementById('quoteName');
       if (nameInput) {
-        setTimeout(() => nameInput.focus(), 450);
+        setTimeout(() => nameInput.focus(), 350);
       }
     });
   }
@@ -590,11 +596,16 @@ function initBudgetCalculator() {
     const eventType = typeSelect ? typeSelect.value : 'Casamento';
     const date = dateInput && dateInput.value ? formatDate(dateInput.value) : '[Data a definir]';
     const city = cityInput && cityInput.value.trim() ? cityInput.value.trim() : '[Cidade / Local]';
+    const ledInput = document.getElementById('ledTextInput');
+    const simLetters = ledInput && ledInput.value ? ledInput.value.trim().toUpperCase() : '';
 
     let msg = `Olá, *i9 Decorações*! 🥂✨\n`;
     msg += `Gostaria de solicitar um orçamento para o meu evento:\n\n`;
     msg += `👤 *Nome:* ${name || '[Meu Nome]'}\n`;
     msg += `💍 *Tipo de Evento:* ${eventType}\n`;
+    if (simLetters && simLetters !== 'LOVE') {
+      msg += `💡 *Letreiro Simulado:* "${simLetters}" (1,20m LED Branco Frio)\n`;
+    }
     msg += `📅 *Data Prevista:* ${date}\n`;
     msg += `📍 *Local / Cidade:* ${city}\n\n`;
     msg += `Vocês têm disponibilidade para essa data? Aguardo o retorno para conversarmos! Muito obrigado(a).`;

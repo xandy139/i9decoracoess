@@ -52,9 +52,9 @@
 
       <ul class="nav-links" id="mainNavLinks">
         <li><a href="#inicio" class="nav-link active">Início</a></li>
-        <li><a href="#letras-led" class="nav-link">Letras de LED</a></li>
         <li><a href="#galeria" class="nav-link">Portfólio</a></li>
         <li><a href="#processo" class="nav-link">Como Funciona</a></li>
+        <li><a href="#letras-led" class="nav-link">Simulador LED</a></li>
         <li><a href="#orcamento" class="nav-link">Orçamento Rápido</a></li>
         <li class="mobile-menu-cta-item">
           <a href="https://api.whatsapp.com/send?phone=5543988080315&text=Ol%C3%A1%2C%20i9%20Decora%C3%A7%C3%B5es!%20Gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" class="btn btn-primary mobile-menu-cta">
@@ -107,167 +107,6 @@
         <div class="marquee-info">
           <h4>Os Maiores Letreiros de Londrina</h4>
           <p>Exclusividade em LED Luz Fria de alto impacto</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Section: Letras de LED Gigantes (Interactive Simulator) -->
-  <section class="section-led" id="letras-led">
-    <div class="container">
-      <div class="text-center">
-        <span class="section-tag">Diferencial Exclusivo em Londrina & Região</span>
-        <h2 class="section-title">O Impacto Monumental das <span class="gold-text">Letras de LED Gigantes</span></h2>
-        <p class="section-subtitle">
-          Com 1 metro e 20 centímetros de altura, nosso acervo conta com os <strong>maiores letreiros iluminados de Londrina e região</strong>. Iluminação profissional exclusivamente em <strong>LED Branco Frio (luz fria)</strong>, garantindo fotos de alta definição, elegância contemporânea e presença marcante no seu evento!
-        </p>
-      </div>
-
-      <div class="led-showcase-grid">
-        <!-- Interactive Simulator Card -->
-        <div class="led-simulator-card">
-          <div class="simulator-header">
-            <h3>Veja o Letreiro no Seu Evento</h3>
-            <p>Escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> pelo ambiente:</p>
-          </div>
-
-          <!-- Backdrop Selector Options (Cenários no topo) -->
-          <div class="sim-backdrop-selector">
-            <div class="backdrop-options">
-              <button type="button" class="backdrop-btn active" data-bg="assets/images/ExemploSimulador/Casamento.jpg">
-                💍 Casamento
-              </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Debutante.jpg">
-                👑 Debutante
-              </button>
-              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Entrada_salao.jpg">
-                🏛️ Entrada <span class="hide-mobile-inline">do Salão</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Live Visual Stage with Photo Backdrop and Draggable Letters -->
-          <div class="virtual-stage" id="virtualStage">
-            <img src="assets/images/ExemploSimulador/Casamento.jpg" alt="Cenário Casamento" class="stage-bg-image" id="simVenueBg">
-            <div class="stage-overlay-vignette"></div>
-
-            <!-- Botão Minha Foto no canto superior da imagem -->
-            <label class="stage-upload-corner-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
-              <span>📷 Minha Foto</span>
-              <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
-            </label>
-
-            <div class="stage-drag-hint" id="stageDragHint">
-              <span>✋ Toque e arraste as letras pelo salão</span>
-            </div>
-            <div class="stage-letters-container" id="stageLettersContainer" style="left: 50%; top: 72%;">
-              <!-- Rendered via JS -->
-            </div>
-          </div>
-
-          <!-- Controls -->
-          <div class="simulator-controls">
-            <div class="input-group">
-              <label for="ledTextInput">Digite sua palavra ou iniciais (até 12 letras):</label>
-              <input type="text" id="ledTextInput" class="input-field" value="LOVE" maxlength="12" placeholder="Ex: LOVE, G & V, 15 ANOS...">
-            </div>
-
-            <!-- Proportion / Distance Scale Slider (Aumentar / Diminuir) -->
-            <div class="sim-scale-control">
-              <div class="scale-label-row">
-                <label for="simScaleSlider">Ajustar Proporção / Distância:</label>
-                <span id="scaleValueDisplay">Padrão 1,20m</span>
-              </div>
-              <input type="range" id="simScaleSlider" min="55" max="145" value="100" class="sim-range-input" aria-label="Ajustar proporção das letras">
-            </div>
-
-            <div class="sim-action-buttons">
-              <button type="button" class="btn btn-primary" id="btnApplyLedToQuote">
-                Quero Essas Letras no Meu Evento! 📲
-              </button>
-              <button type="button" class="btn-save-sim" id="btnSaveSimulation">
-                <span>📸 Salvar Foto Simulada</span>
-              </button>
-            </div>
-
-            <!-- Disclaimer Notice: Purely Illustrative Simulation -->
-            <div class="sim-disclaimer">
-              <span class="sim-disclaimer-icon">💡</span>
-              <p><strong>Aviso importante:</strong> Esta ferramenta é uma <em>simulação visual ilustrativa</em> para você ter uma prévia criativa de como as letras compõem o espaço. A disposição física definitiva, proporções reais e o posicionamento no dia do seu evento são alinhados e ajustados tecnicamente no local pela nossa equipe de montagem conforme o layout e as dimensões do salão.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Features & Benefits of LED Letters -->
-        <div class="led-features">
-          <div class="led-feature-card">
-            <div class="led-icon-box">📏</div>
-            <div class="led-feature-text">
-              <h4>1,20m — Os Maiores de Londrina e Região</h4>
-              <p>Diferente de letrinhas pequenas de 70cm a 90cm, nossas peças chegam na altura do peito, garantindo um enquadramento visual grandioso que se destaca em qualquer salão.</p>
-            </div>
-          </div>
-
-          <div class="led-feature-card">
-            <div class="led-icon-box">❄️</div>
-            <div class="led-feature-text">
-              <h4>Exclusividade em LED Branco Frio (Luz Fria)</h4>
-              <p>Lâmpadas globo LED em tom frio de alta nitidez que não esquentam, seguras para crianças e tecidos finos, entregando o tom fotográfico perfeito.</p>
-            </div>
-          </div>
-
-          <div class="led-feature-card">
-            <div class="led-icon-box">📸</div>
-            <div class="led-feature-text">
-              <h4>O Ponto Mais Fotografado da Sua Festa</h4>
-              <p>Os noivos, debutantes e convidados fazem fila para registrar memórias em frente às letras, gerando momentos espontâneos e inesquecíveis.</p>
-            </div>
-          </div>
-
-          <div class="led-feature-card">
-            <div class="led-icon-box">🚚</div>
-            <div class="led-feature-text">
-              <h4>Montagem Técnica em Londrina e Cidades Vizinhas</h4>
-              <p>Nossa equipe faz toda a logística, posicionamento seguro com bases reforçadas e cabeamento discreto em Londrina, Cambé, Ibiporã, Rolândia e região.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Showcase Spotlight -->
-      <div class="led-real-spotlight">
-        <div class="spotlight-img-box">
-          <img src="assets/images/real/debutante_isa_15_real.jpg" alt="Debutante Isa apoiada no letreiro de 1,20m #15 ISA - i9 Decorações">
-        </div>
-        <div class="spotlight-info">
-          <span class="section-tag" style="margin-bottom: 0.8rem;">Destaque Cenográfico</span>
-          <h3>Os Maiores Letreiros de Londrina e Região</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
-            Veja na foto ao lado a Debutante Isa apoiada em nosso letreiro '#15 ISA'. As letras medem <strong>1,20m de altura</strong>, com acabamento premium em caixa tridimensional branca acetinada.
-            A iluminação exclusivamente em <strong>LED Branco Frio (luz fria)</strong> cria uma presença cênica incomparável tanto em salões fechados quanto em gramados e entradas externas.
-          </p>
-          <div class="spotlight-specs-list">
-            <div class="spotlight-spec-item">
-              <strong>Dimensões:</strong>
-              <span>1,20m de altura (Os maiores da região)</span>
-            </div>
-            <div class="spotlight-spec-item">
-              <strong>Iluminação:</strong>
-              <span>LED Branco Frio (Luz fria ultra nítida)</span>
-            </div>
-            <div class="spotlight-spec-item">
-              <strong>Modelos:</strong>
-              <span>Nomes, Iniciais com Coração, #15, Bodas</span>
-            </div>
-            <div class="spotlight-spec-item">
-              <strong>Locação & Logística:</strong>
-              <span>Entrega, montagem e retirada inclusas</span>
-            </div>
-          </div>
-          <a href="#orcamento" class="btn btn-primary btn-sm">
-            Consultar Disponibilidade das Letras 📲
-          </a>
         </div>
       </div>
     </div>
@@ -521,6 +360,166 @@
     </div>
   </section>
 
+  <!-- Section: Letras de LED Gigantes (Interactive Simulator) -->
+  <section class="section-led" id="letras-led">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">Diferencial Exclusivo em Londrina & Região</span>
+        <h2 class="section-title">O Impacto Monumental das <span class="gold-text">Letras de LED Gigantes</span></h2>
+        <p class="section-subtitle">
+          Com 1 metro e 20 centímetros de altura, nosso acervo conta com os <strong>maiores letreiros iluminados de Londrina e região</strong>. Iluminação profissional exclusivamente em <strong>LED Branco Frio (luz fria)</strong>, garantindo fotos de alta definição, elegância contemporânea e presença marcante no seu evento!
+        </p>
+      </div>
+
+      <div class="led-showcase-grid">
+        <!-- Interactive Simulator Card -->
+        <div class="led-simulator-card">
+          <div class="simulator-header">
+            <h3>Veja o Letreiro no Seu Evento</h3>
+            <p>Escolha um cenário, digite sua palavra e <strong>arraste as letras</strong> pelo ambiente:</p>
+          </div>
+
+          <!-- Backdrop Selector Options (Cenários no topo) -->
+          <div class="sim-backdrop-selector">
+            <div class="backdrop-options">
+              <button type="button" class="backdrop-btn active" data-bg="assets/images/ExemploSimulador/Casamento.jpg">
+                💍 Casamento
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Debutante.jpg">
+                👑 Debutante
+              </button>
+              <button type="button" class="backdrop-btn" data-bg="assets/images/ExemploSimulador/Entrada_salao.jpg">
+                🏛️ Entrada <span class="hide-mobile-inline">do Salão</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Visual Stage with Photo Backdrop and Draggable Letters -->
+          <div class="virtual-stage" id="virtualStage">
+            <img src="assets/images/ExemploSimulador/Casamento.jpg" alt="Cenário Casamento" class="stage-bg-image" id="simVenueBg">
+            <div class="stage-overlay-vignette"></div>
+
+            <!-- Botão Minha Foto no canto superior da imagem -->
+            <label class="stage-upload-corner-btn" for="venuePhotoInput" title="Carregar foto do seu próprio espaço">
+              <span>📷 Minha Foto</span>
+              <input type="file" id="venuePhotoInput" accept="image/*" style="display: none;">
+            </label>
+
+            <div class="stage-drag-hint" id="stageDragHint">
+              <span>✋ Toque e arraste as letras pelo salão</span>
+            </div>
+            <div class="stage-letters-container" id="stageLettersContainer" style="left: 50%; top: 72%;">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="simulator-controls">
+            <div class="input-group">
+              <label for="ledTextInput">Digite sua palavra ou iniciais (até 12 letras):</label>
+              <input type="text" id="ledTextInput" class="input-field" value="LOVE" maxlength="12" placeholder="Ex: LOVE, G & V, 15 ANOS...">
+            </div>
+
+            <!-- Proportion / Distance Scale Slider (Aumentar / Diminuir) -->
+            <div class="sim-scale-control">
+              <div class="scale-label-row">
+                <label for="simScaleSlider">Ajustar Proporção / Distância:</label>
+                <span id="scaleValueDisplay">Padrão 1,20m</span>
+              </div>
+              <input type="range" id="simScaleSlider" min="55" max="145" value="100" class="sim-range-input" aria-label="Ajustar proporção das letras">
+            </div>
+
+            <div class="sim-action-buttons">
+              <button type="button" class="btn btn-primary" id="btnApplyLedToQuote">
+                Quero Essas Letras no Meu Evento! 📲
+              </button>
+              <button type="button" class="btn-save-sim" id="btnSaveSimulation">
+                <span>📸 Salvar Foto Simulada</span>
+              </button>
+            </div>
+
+            <!-- Disclaimer Notice: Purely Illustrative Simulation -->
+            <div class="sim-disclaimer">
+              <span class="sim-disclaimer-icon">💡</span>
+              <p><strong>Aviso importante:</strong> Esta ferramenta é uma <em>simulação visual ilustrativa</em> para você ter uma prévia criativa de como as letras compõem o espaço. A disposição física definitiva, proporções reais e o posicionamento no dia do seu evento são alinhados e ajustados tecnicamente no local pela nossa equipe de montagem conforme o layout e as dimensões do salão.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features & Benefits of LED Letters -->
+        <div class="led-features">
+          <div class="led-feature-card">
+            <div class="led-icon-box">📏</div>
+            <div class="led-feature-text">
+              <h4>1,20m — Os Maiores de Londrina e Região</h4>
+              <p>Diferente de letrinhas pequenas de 70cm a 90cm, nossas peças chegam na altura do peito, garantindo um enquadramento visual grandioso que se destaca em qualquer salão.</p>
+            </div>
+          </div>
+
+          <div class="led-feature-card">
+            <div class="led-icon-box">❄️</div>
+            <div class="led-feature-text">
+              <h4>Exclusividade em LED Branco Frio (Luz Fria)</h4>
+              <p>Lâmpadas globo LED em tom frio de alta nitidez que não esquentam, seguras para crianças e tecidos finos, entregando o tom fotográfico perfeito.</p>
+            </div>
+          </div>
+
+          <div class="led-feature-card">
+            <div class="led-icon-box">📸</div>
+            <div class="led-feature-text">
+              <h4>O Ponto Mais Fotografado da Sua Festa</h4>
+              <p>Os noivos, debutantes e convidados fazem fila para registrar memórias em frente às letras, gerando momentos espontâneos e inesquecíveis.</p>
+            </div>
+          </div>
+
+          <div class="led-feature-card">
+            <div class="led-icon-box">🚚</div>
+            <div class="led-feature-text">
+              <h4>Montagem Técnica em Londrina e Cidades Vizinhas</h4>
+              <p>Nossa equipe faz toda a logística, posicionamento seguro com bases reforçadas e cabeamento discreto em Londrina, Cambé, Ibiporã, Rolândia e região.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase Spotlight -->
+      <div class="led-real-spotlight">
+        <div class="spotlight-img-box">
+          <img src="assets/images/real/debutante_isa_15_real.jpg" alt="Debutante Isa apoiada no letreiro de 1,20m #15 ISA - i9 Decorações">
+        </div>
+        <div class="spotlight-info">
+          <span class="section-tag" style="margin-bottom: 0.8rem;">Destaque Cenográfico</span>
+          <h3>Os Maiores Letreiros de Londrina e Região</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
+            Veja na foto ao lado a Debutante Isa apoiada em nosso letreiro '#15 ISA'. As letras medem <strong>1,20m de altura</strong>, com acabamento premium em caixa tridimensional branca acetinada.
+            A iluminação exclusivamente em <strong>LED Branco Frio (luz fria)</strong> cria uma presença cênica incomparável tanto em salões fechados quanto em gramados e entradas externas.
+          </p>
+          <div class="spotlight-specs-list">
+            <div class="spotlight-spec-item">
+              <strong>Dimensões:</strong>
+              <span>1,20m de altura (Os maiores da região)</span>
+            </div>
+            <div class="spotlight-spec-item">
+              <strong>Iluminação:</strong>
+              <span>LED Branco Frio (Luz fria ultra nítida)</span>
+            </div>
+            <div class="spotlight-spec-item">
+              <strong>Modelos:</strong>
+              <span>Nomes, Iniciais com Coração, #15, Bodas</span>
+            </div>
+            <div class="spotlight-spec-item">
+              <strong>Locação & Logística:</strong>
+              <span>Entrega, montagem e retirada inclusas</span>
+            </div>
+          </div>
+          <a href="#orcamento" class="btn btn-primary btn-sm">
+            Consultar Disponibilidade das Letras 📲
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Section: Simulador de Orçamento (WhatsApp Generator) -->
   <section class="section-budget" id="orcamento">
     <div class="container">
@@ -699,9 +698,9 @@
           <h4>Navegação</h4>
           <ul class="footer-links">
             <li><a href="#inicio">Página Inicial</a></li>
-            <li><a href="#letras-led">Letras de LED</a></li>
             <li><a href="#galeria">Portfólio</a></li>
             <li><a href="#processo">Como Trabalhamos</a></li>
+            <li><a href="#letras-led">Simulador LED (1,20m)</a></li>
             <li><a href="#orcamento">Simulador de Orçamento</a></li>
           </ul>
         </div>
