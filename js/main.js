@@ -529,7 +529,8 @@ function initLightbox() {
     const title = currentItem.querySelector('.gallery-overlay-title');
 
     modalImg.src = img.src;
-    modalCaption.textContent = title ? title.textContent : '';
+    const cleanCaption = (img && img.getAttribute('alt') || '').replace(/\s*-\s*i9 Decorações/i, '').trim();
+    modalCaption.textContent = title ? title.textContent : cleanCaption;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
